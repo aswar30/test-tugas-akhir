@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="bg-white">
+  <nav class="p-5 bg-slate-400 shadow md:flex md:items-center md:justify-between">
+    <div class="flex justify-between items-center ">
+      <span class="text-2xl font-[Poppins] cursor-pointer">
+        <img class="h-10 inline"
+          src="https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg">
+        tailwind
+      </span>
+
+      <span class="text-3xl cursor-pointer mx-2 md:hidden block">
+        <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
+      </span>
+    </div>
+
+    <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-slate-400 w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+      <li class="mx-4 my-6 md:my-0">
+        <a href="#" class="text-xl hover:text-cyan-500 duration-500">HOME</a>
+      </li>
+      <li class="mx-4 my-6 md:my-0">
+        <a href="#" class="text-xl hover:text-cyan-500 duration-500">PEMBAYARAN</a>
+      </li>
+      <li class="mx-4 my-6 md:my-0 bg-slate-500 rounded">
+        <a href="#" class="text-xl hover:text-cyan-500 duration-500">RIWAYAT PEMESANAN</a>
+      </li>
+      <li class="mx-4 my-6 md:my-0">
+        <a href="#" class="text-xl hover:text-cyan-500 duration-500">LAHAN PEMAKAMAN</a>
+      </li>
+      <li class="mx-4 my-6 md:my-0">
+        <a href="#" class="text-xl hover:text-cyan-500 duration-500">BLOG'S</a>
+      </li>
+    </ul>
+  </nav>
+  <h1 class="ml-5 mt-10 mb-3">Pemakaman</h1>
+  <input type="text" placeholder="cari..." class="t-1 ml-5 block px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+      focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500
+      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+      invalid:border-pink-500 invalid:text-pink-600
+      focus:invalid:border-pink-500 focus:invalid:ring-pink-500">
+  <div class="container bg-slate-500 mx-auto px-4 w-screen h-52 my-8 mx-2 rounded">
+    <img src="./img/contoh.jpg" alt="" class=" w-44 h-44 rounded">
+  </div>
+
+  <script>
+    function Menu(e){
+      let list = document.querySelector('ul');
+      e.name === 'menu' ? (e.name = "close",list.classList.add('top-[80px]') , list.classList.add('opacity-100')) :( e.name = "menu" ,list.classList.remove('top-[80px]'),list.classList.remove('opacity-100'))
+    }
+  </script>
+</body>
+
+</html>

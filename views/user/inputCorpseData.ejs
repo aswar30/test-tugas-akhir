@@ -1,0 +1,67 @@
+<%- include('./item/head.ejs') %>
+
+<body>
+
+    <body class="bg-white">
+        <%- include('./item/navbar.ejs') %>
+
+        <form action="/input-corpse-data/<%= idBurialGrounds %>/<%= blockId %>" method="post" enctype="multipart/form-data">
+            <div class="mx-2 md:mx-20 my-5 bg-slate-400 w-auto h-auto rounded-lg py-5 px-4  md:px-28">
+                <h1 class="font-bold text-center mb-5">Masukan Data Jenazah</h1>
+
+                <%- include('./item/message.ejs') %>
+                <p class="text-xs">Yang bertanda * wajib di isi <%= idBurialGrounds %></p>
+            
+                <input type="text" name="name" size="" class="block w-full h-8 my-4 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" placeholder="Nama" required>
+            
+                <input type="text" name="NIK" class="block w-full h-8 my-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" placeholder="NIK" required>
+
+                <input type="number" name="die"
+                    class="block w-full h-8 mt-4 mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    placeholder="Tutup Usia" required>
+            
+                <input type="radio" name="gender" value="Laki-Laki" class="text-slate-600" required/>
+                <label for="contactChoice1">Laki-Laki</label>
+            
+                <input type="radio" name="gender" value="Perempuan" class="text-slate-600" req/>
+                <label for="contactChoice2">Perempuan</label>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Poto ktp *</label>
+                <input type="file" size="20715200" name="photoIdCard" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Poto Kartu
+                    Keluarga *</label>
+                <input type="file" name="familyCard"
+                    class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Poto Kartu Kuning *</label>
+                <input type="file" name="photoYellowCard" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Poto Surat Keterangan RT/RW *</label>
+                <input type="file" name="photoRTRWCertificate" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Keterangan Meninggal di RS</label>
+                <input type="file" name="descriptionOfDeathInHospital" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-4000">
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">KTP ahli waris *</label>
+                <input type="file" name="idcardOfHeirs"
+                    class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-4000">
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Tanggal Meninggal *</label>
+                <input type="date" name="dateOfDeath" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
+
+                <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Tanggal Dikebumikan *</label>
+                <input type="date" name="dateOfBurial" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50  dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
+            
+                <div class="flex justify-center w-full h-12 py-2">
+                    <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
+                        type="submit">Kirim</button>
+                </div>
+        </form>
+
+        </div>
+    <%- include('./item/javascript.ejs') %>
+    </body>
+
+</html>

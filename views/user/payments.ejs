@@ -1,0 +1,26 @@
+<%- include('./item/head.ejs') %>
+
+<body>
+
+    <body class="bg-white">
+
+        <%- include('./item/navbar.ejs') %>
+
+        <div class="mx-auto my-48 bg-slate-500 w-80 h-auto rounded-lg py-5 px-10">
+            <h1 class="font-bold text-center mb-5 ">Pembayaran Lahan Makam</h1>
+
+            <h1 class="font-semibold text-center mb-4">Total Pembayaran</h1>
+           
+            <h1 class="font-semibold text-center">Rp. <%= totalPaymnets %></h1>
+
+            <button class="bg-blue-600 my-5 w-20 h-7 rounded-lg text-cyan-50 font-semibold mx-20 hover:bg-blue-700 hover:font-bold"
+            type="submit">
+            <a href="<%=  urlMidtrans %>">Bayar</a>
+            </button>
+        </div>
+
+        <%- include('./item/javascript.ejs') %>
+
+    </body>
+
+</html>

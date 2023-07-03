@@ -1,0 +1,35 @@
+<%- include('./item/head.ejs') %>
+
+<body>
+    <body class="bg-white">
+
+        <%- include('./item/navbar.ejs') %>
+        
+        <h1 class="ml-5 mt-10 mb-3">Pemakaman</h1>
+        <input type="text" placeholder="cari..." class="t-1 ml-5 block px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+          focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500
+          disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+          invalid:border-pink-500 invalid:text-pink-600
+          focus:invalid:border-pink-500 focus:invalid:ring-pink-500">
+
+        <% for(let i=0; i < listPayment.length; i++){ %>
+        <div class="sm:flex sm:justify-between items-center bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
+            <div class="sm:flex sm:justify-between items-center">
+                <img src="<%= listPayment[i].Lahan_Makam.gambar%>" alt="Gambar Lahan Makam" class=" w-full sm:w-56 h-40 rounded mr-10">
+                <div class="mt-4">
+                    <h1 class="font-semibold">Blok&nbsp;&nbsp;&nbsp;&nbsp;: <%= listPayment[i].Blok.kode %> <%= listPayment[i].Lahan_Makam.Nomor %> </h1>
+                    <h1 class="font-semibold">Status : <%= listPayment[i].status %></h1>
+                </div>
+            </div>
+            <button
+                class="bg-blue-600 h-10 rounded w-20 items-center mt-3 hover:bg-blue-700 hover:font-bold text-white">
+                <a href="/payments-burial-grounds/<%= listPayment[i].id %>">Bayar</a>
+            </button>
+        </div>
+        <% } %>
+
+        <%- include('./item/javascript.ejs') %>
+
+    </body>
+
+</html>

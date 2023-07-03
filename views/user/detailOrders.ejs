@@ -1,0 +1,79 @@
+<%- include('./item/head.ejs') %>
+
+<body>
+
+    <body class="bg-white">
+
+        <%- include('./item/navbar.ejs') %>
+
+        <form action="" method="post">
+            <div class="mx-2 md:mx-20 my-5 bg-slate-400 w-auto h-auto rounded-lg py-5 px-4  md:px-28">
+                <h1 class="font-bold text-center mb-2 text-lg">Detail Pesanan Lahan Makam</h1>
+                <p class="font-semibold text-xs text-center mb-1" >Waktu pemesanan : <%= order.Tanggal %></p>
+                <p class="font-semibold text-xs text-center mb-5">Status : <%= order.status %></p>
+
+                <div class="bg-white p-2 font-semibold rounded m-2">
+                    <h3>Kode Pesanan : <%= order.id %></h3>
+                    <h3>Jumlah Pembayaran : Rp. <%= order.jumlah_pembayaran %></h3>
+                    <h3>Pembayaran : <%= order.Pembayaran %></h3>
+                </div>
+                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
+                    <h2 class="text-center font-bold text-base">Data Jenazah</h2>
+                    <h3 class="mb-1">Nama : <%= order.Data_Jenazah.nama %></h3>
+                    <h3 class="mb-1">Nomor Induk Penduduk : <%= order.Data_Jenazah.nama %></h3>
+                    <h3 class="mb-1">Jenis Kelamin : <%= order.Data_Jenazah.jenis_kelamin %></h3>
+                    <h3 class="mb-1">Tutup Usia : <%= order.Data_Jenazah.tutup_usia %></h3>
+                    <h3 class="mb-1">Tanggal Meningal : <%= order.Data_Jenazah.tanggal_meninggal %></h3>
+                    <h3 class="mb-1">Tanggal Dikebumikan : <%= order.Data_Jenazah.tanggal_dikebumikan %></h3>
+                    <h3 class="mb-1">Kacamatan : xxxxx</h3>
+                    <h3 class="mb-1">Kelurahan : xxxxx</h3>
+                    <h3 class="mb-2">Alamat : xxxxx</h3>
+                </div>
+
+                <div class="bg-white px-4 py-2 h-40 text-xs font-semibold rounded m-2">
+                    <h2 class="text-center font-bold text-base">Catatan Perbaikan</h2>
+                </div>
+
+                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
+                    <h2 class="text-center font-bold text-base mb-3 h-full">Berkas Jenazah</h2>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Kartu Penduduk</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.KTP %>" alt="poto berkas" srcset="">
+                    </div>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Kartu Keluarga</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.kartu_Kelaurga %>" alt="poto berkas" srcset="">
+                    </div>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Kartu Kuning</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.kartu_kuning %>" alt="poto berkas" srcset="">
+                    </div>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Surat Keterangan RT/RW</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.surat_keterangan_RTRW %>" alt="poto berkas" srcset="">
+                    </div>
+                    <% if(order.Data_Jenazah.surat_keterangan_meninggal_RS) { %>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Surat Keterangan Meninggal Di Rumah Sakit</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.surat_keterangan_meninggal_RS %>" alt="poto berkas" srcset="">
+                    </div>
+                    <% } %>
+                    <div class="text-center mb-10">
+                        <h3 class="mb-2 font-semibold">Poto Kartu Penduduk Ahli Waris</h3>
+                        <img class="rounded" src="<%= order.Data_Jenazah.KTP_ahli_waris %>" alt="poto berkas" srcset="">
+                    </div>
+                    
+                </div>
+
+        
+                <div class="flex justify-center w-full h-12 py-2">
+                    <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
+                        type="submit">Kirim</button>
+                </div>
+        </form>
+
+        <%- include('./item/javascript.ejs') %>
+
+    </body>
+
+</html>

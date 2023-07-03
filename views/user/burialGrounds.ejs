@@ -1,0 +1,45 @@
+<%- include('./item/head.ejs') %>
+
+<body>
+    <body class="bg-white">
+
+        <%- include('./item/navbar.ejs') %>
+
+        <main class="z-auto">
+            <h1 class="ml-5 mt-10 mb-3">Pemakaman</h1>
+        <form action="/dasboard" method="get">
+            <div class="relative w-auto">
+                <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="search" name="search" id="default-search"
+                    class="ml-2 p-2 pl-10 text-sm border border-gray-300 rounded bg-white" placeholder="Cari Lahan Pemakaman..."
+                    required>
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cari</button>
+            </div>
+        </form>
+
+
+        <% for(let i=0; i < lahanMakam.length; i++){ %>
+        <div class="sm:flex sm:justify-between items-center bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
+            <div class="sm:flex sm:justify-between items-center">
+                <img src="../asset/el35_wcbo_211208.jpg" alt="" class=" w-full sm:w-56 h-40 rounded mr-10">
+                <h1 class=" mt-4">Blok : <%= block[i].Blok.kode %> <%= lahanMakam[i].Nomor %></h1>
+            </div>
+            <h1 cl>Biaya : Rp. <%= lahanMakam[i].harga%></h1>
+            <button class="bg-blue-600 h-10 rounded w-20 items-center mt-2 sm:my-14 hover:bg-blue-700 hover:font-bold text-white">
+                <a href="/input-corpse-data/<%= lahanMakam[i].id%>/<%= lahanMakam[i].blok_id%>">Pesan</a>
+            </button>
+        </div>
+        <% } %>
+        </main>
+
+        <%- include('./item/javascript.ejs') %>
+    
+</body>
+</html>

@@ -6,7 +6,7 @@ const {validateSizeFile} = require('../../middlewere/validateSize')
 const {saveImage} = require('../../helper/firebase')
 const Snap = require('../../helper/midtrans')
 
-let dateNow = moment().locale('id').format('Do MMMM YYYY, h:mm:ss a')
+let dateNow = moment().locale('id').format('Do MMMM YYYY')
 console.log(dateNow)
 
 class CorpseControllers {

@@ -34,7 +34,9 @@ class AuthController {
     static async viewLogin(req, res) {
         try {
             if(req.session.user == null | req.session.user == undefined){
-                res.render('user/login')
+                res.render('user/login', {
+                    menuActive: '',
+                })
             }else {
                 res.redirect('/home')
             }
@@ -58,10 +60,23 @@ class AuthController {
                 role: 'user',
                 name: validateEmail.nama
             }
-            return res.redirect('/dasboard')
+            return res.redirect('/home')
         } catch(error) {
             console.log(error)
             return res.redirect('/login')
+        }
+    }
+
+    static async viewHome(req, res) {
+        try {
+            const {name} = req.session.user
+            res.render('user/home', {
+                name,
+                title: 'Home',
+                menuActive: 'home',
+            })
+        } catch(error) {
+             return res.redirect('/login')
         }
     }
 

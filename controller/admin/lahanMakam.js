@@ -33,12 +33,11 @@ class LahanMakamController {
     }
     static async actionCreate(req, res) {
         try {
-            const {number, status, price, blockId} = req.body
+            const {number, price, blockId} = req.body
             const urlImage = await saveSingleImage(req.file)
             console.log(urlImage)
             await Lahan_Makam.create({
                 Nomor: number,
-                status: status,
                 harga: price,
                 gambar:urlImage,
                 blok_id: blockId

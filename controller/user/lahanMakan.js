@@ -1,4 +1,4 @@
-const {Lahan_Makam, Blok} = require('../../models')
+const {Lahan_Makam, Blok, Kacamatan, Kelurahan} = require('../../models')
 const { Op } = require("sequelize")
 
 class LahanMakamController {

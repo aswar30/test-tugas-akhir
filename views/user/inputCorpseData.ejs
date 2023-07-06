@@ -47,13 +47,34 @@
                 <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">KTP ahli waris *</label>
                 <input type="file" name="idcardOfHeirs"
                     class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-4000">
+                
+                <label for="block" class="block text-xs my-1 font-medium text-gray-900 dark:text-black">Kacamatan</label>
+                <select name="glassesId" id="" class="rounded bg-gray-300 w-full px-1 py-1">
+                    <% for(let i=0; i < kacamatan.length; i++){ %>
+                        <option value="<%= kacamatan[i].id%>">
+                            <%= kacamatan[i].nama%>
+                        </option>
+                        <% } %>
+                </select>
+                <label for="block" class="block text-xs my-1 font-medium text-gray-900 dark:text-black">Kelurahan</label>
+                <select name="villageId" id="" class="rounded bg-gray-300 w-full px-1 py-1">
+                    <% for(let i=0; i < kelurahan.length; i++){ %>
+                        <option value="<%= kelurahan[i].id%>">
+                            <%= kelurahan[i].nama%>
+                        </option>
+                        <% } %>
+                </select>
+
+                <input type="text" name="address" size=""
+                    class="block w-full h-8 my-4 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    placeholder="Alamat" required>
 
                 <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Tanggal Meninggal *</label>
                 <input type="date" name="dateOfDeath" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
 
                 <label class="block text-xs my-1 font-medium text-gray-900 dark:text-black" for="default_size">Tanggal Dikebumikan *</label>
                 <input type="date" name="dateOfBurial" class="block w-full mb-2 py-1 px-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50  dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400" required>
-            
+
                 <div class="flex justify-center w-full h-12 py-2">
                     <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
                         type="submit">Kirim</button>

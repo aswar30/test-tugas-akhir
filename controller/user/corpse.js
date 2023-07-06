@@ -1,6 +1,6 @@
 const moment = require('moment')
 const { Op } = require("sequelize")
-const {Data_Jenazah, Pesanan, Lahan_Makam} = require('../../models')
+const {Data_Jenazah, Pesanan, Lahan_Makam, Kacamatan, Kelurahan} = require('../../models')
 
 const {validateSizeFile} = require('../../middlewere/validateSize')
 const {saveImage} = require('../../helper/firebase')
@@ -13,7 +13,11 @@ class CorpseControllers {
     static async viewCorpse(req, res) {
         try {
             const {idBurialGrounds, blockId} = req.params
+            const kacamatan = await Kacamatan.findAll()
+            const kelurahan = await Kelurahan.findAll()
             res.render('user/inputCorpseData', {
+                kacamatan,
+                kelurahan,
                 idBurialGrounds,
                 blockId,
                 title: 'Data Jenazah',
@@ -28,7 +32,7 @@ class CorpseControllers {
        try {
          const {idBurialGrounds, blockId} = req.params
          const {id: userId, name: userName, email : userEmail} = req.session.user
-         const { name, gender, die, NIK, dateOfDeath, dateOfBurial} = req.body
+         const { name, gender, die, NIK, dateOfDeath, dateOfBurial, glassesId, villageId, address} = req.body
         
          const lahan = await Lahan_Makam.findOne({where : {
             id : idBurialGrounds,
@@ -62,9 +66,13 @@ class CorpseControllers {
             urlIdcardOfHeirs, 
             urlDescriptionOfDeathInHospital 
          } = await saveImage(req.files)
+
+         console.log(glassesId + ' ' + villageId)
          
-         const {id} = await await Data_Jenazah.create({
+         const {id} = await Data_Jenazah.create({
             masyarakat_id: userId,
+            kelurahan_id: villageId,
+            kacamatan_id: glassesId,
             nama: name,
             NIK: NIK,
             jenis_kelamin: gender,
@@ -75,6 +83,7 @@ class CorpseControllers {
             surat_keterangan_RTRW: urlRTRWCertificate,
             surat_keterangan_meninggal_RS: urlDescriptionOfDeathInHospital,
             KTP_ahli_waris: urlIdcardOfHeirs,
+            alamat: address,
             tanggal_meninggal: dateOfDeath,
             tanggal_dikebumikan: dateOfBurial
          })

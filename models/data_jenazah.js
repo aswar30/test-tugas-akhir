@@ -8,10 +8,22 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Masyarakat, {
         foreignKey: 'masyarakat_id',
       })
+      this.belongsTo(models.Kacamatan, {
+        foreignKey: 'kacamatan_id',
+      })
+      this.belongsTo(models.Kelurahan, {
+        foreignKey: 'kelurahan_id',
+      })
     }
   }
   Data_Jenazah.init({
     masyarakat_id: {
+      type: DataTypes.INTEGER,
+    },
+    kacamatan_id: {
+      type: DataTypes.INTEGER,
+    },
+    kelurahan_id: {
       type: DataTypes.INTEGER,
     },
     nama: {
@@ -61,6 +73,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
+      alamat: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      }
   }, {
     sequelize,
     modelName: 'Data_Jenazah',

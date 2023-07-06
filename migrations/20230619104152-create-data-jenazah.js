@@ -16,6 +16,20 @@ module.exports = {
           key: 'id'
         },
       },
+      kacamatan_id: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: 'Kacamatans',
+            key: 'id'
+          },
+      },
+      kelurahan_id: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: 'Kelurahans',
+            key: 'id'
+          },
+      },
       nama: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -62,6 +76,10 @@ module.exports = {
       tanggal_dikebumikan: {
         type: Sequelize.DATEONLY,
         allowNull: false,
+      },
+      alamat: {
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

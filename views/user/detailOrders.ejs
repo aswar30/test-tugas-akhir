@@ -25,9 +25,9 @@
                     <h3 class="mb-1">Tutup Usia : <%= order.Data_Jenazah.tutup_usia %></h3>
                     <h3 class="mb-1">Tanggal Meningal : <%= order.Data_Jenazah.tanggal_meninggal %></h3>
                     <h3 class="mb-1">Tanggal Dikebumikan : <%= order.Data_Jenazah.tanggal_dikebumikan %></h3>
-                    <h3 class="mb-1">Kacamatan : xxxxx</h3>
-                    <h3 class="mb-1">Kelurahan : xxxxx</h3>
-                    <h3 class="mb-2">Alamat : xxxxx</h3>
+                    <h3 class="mb-1">Kacamatan : <%= order.Data_Jenazah.Kacamatan.nama %></h3>
+                    <h3 class="mb-1">Kelurahan : <%= order.Data_Jenazah.Kelurahan.nama %></h3>
+                    <h3 class="mb-2">Alamat : <%= order.Data_Jenazah.alamat %></h3>
                 </div>
 
                 <div class="bg-white px-4 py-2 h-40 text-xs font-semibold rounded m-2">
@@ -68,7 +68,7 @@
         
                 <div class="flex justify-center w-full h-12 py-2">
                     <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
-                        type="submit">Kirim</button>
+                        type="submit"><a href="/list-orders">Kembali</a></button>
                 </div>
         </form>
 

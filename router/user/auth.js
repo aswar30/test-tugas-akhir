@@ -16,6 +16,8 @@ router.get('/login', Auth.viewLogin)
 router.post('/login', Auth.actionLogin)
 router.get('/logout', Auth.actionLogOut)
 
+router.get('/home', Auth.viewHome)
+
 router.get('/register', Auth.viewRegister)
 router.post('/register', Auth.actionRegister)
 

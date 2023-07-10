@@ -1,4 +1,4 @@
-const {Masyarakat} = require('../../models')
+const {Masyarakat, Pengelola_Makam} = require('../../models')
 const bcrypt = require('bcrypt')
 
 class AuthController {
@@ -49,18 +49,33 @@ class AuthController {
     static async actionLogin(req, res) {
         try {
             const {email, password} = req.body
-            const validateEmail = await Masyarakat.findOne({where: {email: email}})
-            const isPasswordMatch = await bcrypt.compare(password, validateEmail.kata_sandi)
-            if(!isPasswordMatch || !validateEmail) {
-                return res.redirect('/login')
+            let validateAdmin = null
+            let isPasswordAdminrMatch = null
+            let isPasswordUserMatch = null
+            const validateUser = await Masyarakat.findOne({where: {email: email}})
+            if(!validateUser) {
+                validateAdmin = await Pengelola_Makam.findOne({where: {email: email}})
+                isPasswordAdminrMatch = await bcrypt.compare(password, validateAdmin.kata_sandi)
+            }else {
+                isPasswordUserMatch = await bcrypt.compare(password, validateUser.kata_sandi)
             }
-            req.session.user = {
-                id: validateEmail.id,
-                email: validateEmail.email,
-                role: 'user',
-                name: validateEmail.nama
+            if(isPasswordUserMatch && validateUser ) {
+                req.session.user = {
+                id: validateUser.id,
+                email: validateUser.email,
+                name: validateUser.nama,
             }
+            console.log(req.session.user)
             return res.redirect('/home')
+            } else if( validateAdmin && isPasswordAdminrMatch) {
+                req.session.user = {
+                    id: validateAdmin.id,
+                    email: validateAdmin.email,
+                    name: validateAdmin.nama
+                }
+                return res.redirect('/admin/lahan-makam')
+            }
+            return res.redirect('/login')
         } catch(error) {
             console.log(error)
             return res.redirect('/login')

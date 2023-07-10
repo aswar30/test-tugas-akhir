@@ -6,9 +6,15 @@ const Lahan = require('../../controller/admin/lahanMakam')
 
 const {singleUpload} = require('../../middlewere/multer')
 
-router.get('/lahan-makam', Lahan.viewLahanMakam)
+const {authAdmin} = require('../../middlewere/auth')
 
-router.get('/add-lahan-makam', Lahan.viewCreate)
-router.post('/add-lahan-makam', singleUpload, Lahan.actionCreate)
+router.get('/lahan-makam', authAdmin, Lahan.viewLahanMakam)
+
+router.get('confirm-order/:orderId', authAdmin)
+
+router.get('/delete-lahan-makam/:groudsId', authAdmin, Lahan.actionDelete)
+
+router.get('/add-lahan-makam', authAdmin, Lahan.viewCreate)
+router.post('/add-lahan-makam', authAdmin, singleUpload, Lahan.actionCreate)
 
 module.exports = router;

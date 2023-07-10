@@ -6,17 +6,57 @@ class LahanMakamController {
     static async viewLahanMakam(req, res) {
         try {
             let lahanMakam
-            if(req.session.user == null | req.session.user == undefined) return res.redirect('/login')
-            if(req.body.search && req.body.blok) lahanMakam =  await Lahan_Makam.findAll({where: {[Op.and]: [{Nomor: {[Op.substring]: req.body.search}}, { blok_id: req.body.blok}]}})
-            if(req.body.search) lahanMakam = await Lahan_Makam.findAll({where: {Nomor: {[Op.substring]: req.body.search}}})
-            if(req.body.blok) lahanMakam = await Lahan_Makam.findAll({where: {blok_id: req.body.blok}})
-            else lahanMakam = await Lahan_Makam.findAll()
+            let {blockId, search} = req.query
+            if(search && blockId){
+                lahanMakam =  await Lahan_Makam.findAll({
+                    where: {
+                        [Op.and]: [{
+                            Nomor: {
+                                [Op.substring]: search
+                            }
+                        }, 
+                        { 
+                            blok_id: blockId
+                        }
+                    ]
+                },
+                include: [
+                    {model: Blok}
+                ]})}
+            else if(search){
+                lahanMakam = await Lahan_Makam.findAll({
+                    where: {
+                        Nomor: {
+                            [Op.substring]: search
+                        }
+                    },
+                    include: [
+                    {model: Blok},
+            ]})
+
+            }
+            else if(blockId){
+                lahanMakam = await Lahan_Makam.findAll({
+                    where: {
+                        blok_id: blockId
+                    },
+                    include: [
+                    {model: Blok}
+                    ]
+                })
+            }
+            else lahanMakam = await Lahan_Makam.findAll({
+                include: [
+                    {model: Blok},
+            ]})
             const blok = await Blok.findAll()
             res.render('admin/readBurialGrounds', {
                 lahanMakam,
-                blok
+                blok,
+                path: "/admin/lahan-makam"
             })
         } catch (error) {
+            console.log(error)
             res.redirect('/lahan-makam')
         }
     }
@@ -28,7 +68,7 @@ class LahanMakamController {
                 block
             })
         } catch (error) {
-            res.redirect('/lahan-makam')
+            res.redirect('/admin/lahan-makam')
         }
     }
     static async actionCreate(req, res) {
@@ -50,7 +90,15 @@ class LahanMakamController {
     }
     static async viewUpdate(req, res) {
     }
-    static async viewDelete(req, res) {  
+    static async actionDelete(req, res) { 
+        try {
+            const {groudsId} = req.params
+            console.log(groudsId)
+            await Lahan_Makam.destroy({where: {id: groudsId, status: {[Op.ne]: 'terisi'}}})
+            res.redirect('/admin/lahan-makam')
+        } catch(error) {
+            console.log(error)
+        }
     }
 
 }

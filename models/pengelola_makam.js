@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pengelola_Makam.init({
     nama: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull:false,
       },
       email: {

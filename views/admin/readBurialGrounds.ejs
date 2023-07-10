@@ -44,13 +44,10 @@
 
         <h1 class="ml-2 my-10 text-3xl font-bold">Pemakaman</h1>
        <div class="flex justify-between mx-2 sm:mr-7">
-        <input type="text" placeholder="cari..." class="t-1 block px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-                  focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-500
-                  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                  invalid:border-pink-500 invalid:text-pink-600
-                  focus:invalid:border-pink-500 focus:invalid:ring-pink-500">
 
-        <button class="bg-blue-600 h rounded w-20 hover:bg-blue-700 hover:font-bold " type="submit">
+        <%- include('../user/item/search.ejs') %>
+
+        <button class="bg-blue-600 h rounded w-16 md:w-20 h-8 md:h-10 mt-14 hover:bg-blue-700 hover:font-bold " type="submit">
             <a href="/admin/add-lahan-makam">Tambah</a>
         </button>
        </div>
@@ -58,13 +55,27 @@
         <div class="sm:flex sm:justify-between bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
             <div class="sm:flex sm:justify-between items-center">
                 <img src="<%= lahanMakam[i].gambar %>" alt="" class=" w-full h-52 sm:w-44 sm:h-40 rounded mr-10 ">
-                <h1 class="font-semibold text-center text-2xl my-5">Blok : <%= lahanMakam[i].Nomor %></h1>
+                <div class="">
+                    <h1 class="font-semibold text-center text-2xl my-5">Blok : <%= lahanMakam[i].Blok.kode %>
+                            <%= lahanMakam[i].Nomor %>
+                    </h1>
+                    <h1 class="font-semibold text-center text-1xl my-5">
+                        Status : <%= lahanMakam[i].status %>
+                    </h1>
+                </div>
             </div>
             <div class="flex justify-between sm:flex-col">
+                <% if(lahanMakam[i].status === 'terisi' ) { %>
+                    <button class="bg-blue-400 h-10 rounded w-20" type="submit">Perbarui</button>
+                    <button class="bg-red-300 h-10 rounded w-20" type="submit">Hapus</button>
+                <% } %>
+                <% if(lahanMakam[i].status==='kosong' ) { %>
                 <button class="bg-blue-600 h-10 rounded w-20 hover:bg-blue-700 hover:font-bold"
-                    type="submit">Update</button>
+                    type="submit"><a href="/update-lahan-makam/<%= lahanMakam[i].id %>">Perbarui</a></button>
+                    
                 <button class="bg-red-600 h-10 rounded w-20 hover:bg-red-600 hover:font-bold"
-                    type="submit">Delete</button>
+                    type="submit"><a href="/admin/delete-lahan-makam/<%= lahanMakam[i].id %>">Hapus</a></button>
+                <% } %>
             </div>
         </div>
         <% } %>

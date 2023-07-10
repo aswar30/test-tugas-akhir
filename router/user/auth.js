@@ -28,7 +28,7 @@ router.get('/payments-burial-grounds/:idOrder', authUser, Payment.viewPayment)
 router.get('/list-payments', authUser, Payment.viewListPaymnet)
 
 router.get('/list-orders', authUser, Order.viewOrderHistory)
-router.get('/detail-order/:orderId', Order.viewDetailOrder)
+router.get('/detail-order/:orderId', authUser, Order.viewDetailOrder)
 
 router.get('/dasboard', authUser, Lahan.viewLahanMakam)
 

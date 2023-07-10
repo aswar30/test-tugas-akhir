@@ -26,7 +26,9 @@ app.use(
 app.use('/admin', admin)
 app.use(user)
 
-
+app.use( (req, res) => {
+    res.redirect('/login')
+})
 
 console.log(`App running on port ${process.env.PORT}`)
 

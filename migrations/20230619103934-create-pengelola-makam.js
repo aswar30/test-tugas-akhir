@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nama: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull:false,
       },
       email: {

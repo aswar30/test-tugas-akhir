@@ -45,7 +45,6 @@ class OrderControllers {
             ]}
           ]
         })
-        console.log(order.Data_Jenazah.Kelurahan)
         return res.render('user/detailOrders', {
           order,
           title: 'Detail Pesanan',
@@ -59,7 +58,6 @@ class OrderControllers {
     static async Notifications (req, res ) {
     try {
       let dataTransaction = await Snap.transaction.notification(req.body)
-      console.log(dataTransaction)
       if(dataTransaction) {
         const orderId = await Pesanan.findOne({
           where : {
@@ -70,7 +68,7 @@ class OrderControllers {
           if(dataTransaction.transaction_status == 'settlement') {
             await Pesanan.update({
             status: "Menunggu Validasi",
-            Pembayaran: `${dataTransaction.payment_type} ${dataTransaction.bank}`
+            Pembayaran: `${dataTransaction.payment_type}`
           },
           {where : {
             order_id_midtrans : dataTransaction.order_id

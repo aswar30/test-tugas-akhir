@@ -41,5 +41,9 @@ module.exports = {
     saveSingleImage: async (files) => {
         const urlGrounds = await uploadImage(files)
         return urlGrounds
+    },
+    deleteImage: async (urlImage) => {
+        const desertref = ref(storage, urlImage)
+        await deleteObject(desertref)
     }
 }

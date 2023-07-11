@@ -66,8 +66,6 @@ class CorpseControllers {
             urlIdcardOfHeirs, 
             urlDescriptionOfDeathInHospital 
          } = await saveImage(req.files)
-
-         console.log(glassesId + ' ' + villageId)
          
          const {id} = await Data_Jenazah.create({
             masyarakat_id: userId,

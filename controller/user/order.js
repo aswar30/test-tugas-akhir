@@ -58,6 +58,7 @@ class OrderControllers {
     static async Notifications (req, res ) {
     try {
       let dataTransaction = await Snap.transaction.notification(req.body)
+      console.log(dataTransaction)
       if(dataTransaction) {
         const orderId = await Pesanan.findOne({
           where : {

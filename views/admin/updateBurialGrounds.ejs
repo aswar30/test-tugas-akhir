@@ -44,26 +44,29 @@
                 </li>
             </ul>
         </nav>
-        <form action="/admin/add-lahan-makam" method="post" enctype="multipart/form-data">
+        <form action="/admin/update-lahan-makam/<%= groundsId %>" method="post" enctype="multipart/form-data">
             <div class="mx-auto my-40 bg-slate-500 w-80 h-auto rounded-lg pt-5 px-10">
-                <h1 class="font-bold text-center mb-5 ">Tambah Lahan Makam</h1>
+                <h1 class="font-bold text-center mb-5 ">Perbarui Lahan Makam</h1>
 
                 <label for="block" class="font-semibold">Kode Block</label>
                 <select name="blockId" id="" class="rounded bg-gray-300 w-full px-1 py-1">
                     <% for(let i=0; i < block.length; i++){ %>
-                        <option value="<%= block[i].id%>"><%= block[i].kode%></option>
-                    <% } %>
+                        <option value="<%= block[i].id%>">
+                            <%= block[i].kode%>
+                        </option>
+                        <% } %>
                 </select>
 
                 <h1 class="font-semibold">Nomor</h1>
-                <input type="text" name="number" placeholder="73000000000" class="rounded bg-gray-300 w-full px-1 py-1" required>
-            
+                <input type="text" name="number" placeholder="<% grouds.Nomor %>" class="rounded bg-gray-300 w-full px-1 py-1">
+
                 <h1 class="font-semibold">Harga</h1>
-                <input type="text" name="price" placeholder="agus suryadi" class="rounded bg-gray-300  w-full px-1 py-1" required>
-            
+                <input type="text" name="price" placeholder="<% grouds.harga %>"
+                    class="rounded bg-gray-300  w-full px-1 py-1">
+
                 <h1 class="font-semibold">poto Lahan Makam</h1>
-                <input type="file" name="photoGrounds" class="rounded bg-gray-300  w-full px-1 py-1" placeholder="ucudvdd" required>
-            
+                <input type="file" name="photoGrounds" class="rounded bg-gray-300  w-full px-1 py-1" placeholder="<% grouds.gambar%>">
+
                 <button
                     class="bg-blue-600 my-5 w-20 h-7 rounded-lg text-cyan-50 font-semibold mx-20 hover:bg-blue-700 hover:font-bold"
                     type="submit">Tambah</button>

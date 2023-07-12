@@ -1,0 +1,30 @@
+<%- include('../user/item/head.ejs') %>
+
+<body>
+    <body class="bg-white">
+
+        <%- include('./item/navbar.ejs') %>
+        
+        <h1 class="ml-2 my-10 text-2xl font-bold">Daftar Pembayaran</h1>
+
+        <% for(let i=0; i < listPayment.length; i++){ %>
+        <div class="sm:flex sm:justify-between items-center bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
+            <div class="sm:flex sm:justify-between items-center">
+                <img src="<%= listPayment[i].Lahan_Makam.gambar%>" alt="Gambar Lahan Makam" class=" w-full sm:w-56 h-40 rounded mr-10">
+                <div class="mt-4">
+                    <h1 class="font-semibold">Blok&nbsp;&nbsp;&nbsp;&nbsp;: <%= listPayment[i].Blok.kode %> <%= listPayment[i].Lahan_Makam.Nomor %> </h1>
+                    <h1 class="font-semibold">Status : <%= listPayment[i].status %></h1>
+                </div>
+            </div>
+            <button
+                class="bg-blue-600 h-10 rounded w-20 items-center mt-3 hover:bg-blue-700 hover:font-bold text-white">
+                <a href="/payments-burial-grounds/<%= listPayment[i].id %>">Bayar</a>
+            </button>
+        </div>
+        <% } %>
+
+        <%- include('../user/item/javascript.ejs') %>
+
+    </body>
+
+</html>

@@ -8,13 +8,25 @@
             </svg>
         </div>
         <input type="search" name="search" id="default-search"
-            class="ml-2 p-2 pl-10 text-sm border border-gray-300 rounded bg-white" placeholder="Cari Lahan Pemakaman..."
+            class="ml-2 p-2 pl-10 text-sm border border-gray-300 rounded bg-white" placeholder="Cari Pesanan..."
             >
         <button type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cari</button>
     </div>
-    <select name="blockId" aria-placeholder="aswar" class=" ml-2 mt-5 rounded bg-gray-300 w-40 md:w-full px-2 py-1">
-        <option value="">Pilih Blok</option>
+    <select name="status" aria-placeholder="aswar" class=" ml-2 mt-5 rounded bg-gray-300 w-40 px-2 py-1">
+        <option value="">Status</option>
+            <option value="Menunggu Pembayaran">
+                Menunggu Pembayaran
+            </option>
+            <option value="Menunggu Validasi">
+                Menunggu Validasi
+            </option>
+            <option value="Diterima">
+                Diterima
+            </option>
+    </select>
+    <select name="blockId" aria-placeholder="aswar" class=" ml-2 mt-5 rounded bg-gray-300 w-24 px-2 py-1">
+        <option value="">Blok</option>
         <% for(let i=0; i < blok.length; i++){ %>
             <option value="<%= blok[i].id%>">
                 <%= blok[i].kode%>

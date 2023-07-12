@@ -32,7 +32,6 @@ class OrderControllers {
     static async viewDetailOrder(req, res) {
       try {
         const {orderId} = req.params
-        console.log(orderId)
         const order = await Pesanan.findOne({
           where: {id: orderId},
           include: [
@@ -58,7 +57,6 @@ class OrderControllers {
     static async Notifications (req, res ) {
     try {
       let dataTransaction = await Snap.transaction.notification(req.body)
-      console.log(dataTransaction)
       if(dataTransaction) {
         const orderId = await Pesanan.findOne({
           where : {
@@ -79,16 +77,20 @@ class OrderControllers {
           || dataTransaction.transaction_status == 'expire') {
             await Pesanan.update({
             status: "batal",
-            Pembayaran: `${dataTransaction.payment_type} ${dataTransaction.bank}`
+            Pembayaran: `${dataTransaction.payment_type}`
           },
           {
             where : {
               order_id_midtrans : dataTransaction.order_id
             }
           })
-
-          await Data_Jenazah.destroy({
-            where: {id: orderId.masyarakat_id}
+          await Lahan_Makam.update({
+            status: 'kosong'
+          },
+          {
+            where: {
+              id: orderId.lahan_makam_id
+            }
           })
         }
       }

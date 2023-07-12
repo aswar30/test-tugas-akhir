@@ -40,7 +40,7 @@ class CorpseControllers {
         }})
          const totalPrice = lahan.harga
 
-         const orderId =  "APP-" + userId + "-" + new Date().getTime()
+         const orderId =  "PLM-" + userId + "-" + new Date().getTime()
          
          const parameter = {
           "transaction_details": {

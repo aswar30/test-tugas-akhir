@@ -9,10 +9,10 @@ class LahanMakamController {
             let lahanMakam
             let {blockId, search} = req.query
             if(search && blockId){
-                listOrder =  await Lahan_Makam.findAll({
+                lahanMakam =  await Lahan_Makam.findAll({
                     where: {
                         [Op.and]: [{
-                            nomor_pesanan: {
+                            Nomor: {
                                 [Op.substring]: search
                             }
                         }, 
@@ -54,7 +54,9 @@ class LahanMakamController {
             res.render('admin/readBurialGrounds', {
                 lahanMakam,
                 blok,
-                path: "/admin/lahan-makam"
+                menuActive: 'grounds',
+                path: '/admin/lahan-makam',
+                title: 'Lahan Makam'
             })
         } catch (error) {
             console.log(error)
@@ -63,10 +65,10 @@ class LahanMakamController {
     }
     static async viewCreate(req, res) {
         try {
-            if(req.session.user == null | req.session.user == undefined) return res.redirect('/login')
             const block = await Blok.findAll()
             return res.render('admin/addBurialGrounds', {
-                block
+                block,
+                menuActive: 'grounds'
             })
         } catch (error) {
             res.redirect('/admin/lahan-makam')
@@ -91,20 +93,37 @@ class LahanMakamController {
     }
     static async viewUpdate(req, res) {
         try {
-            const {groudId} = req.params
+             const {groundId} = req.params
+             const block = await Blok.findAll()
+             const ground = await Lahan_Makam.findOne({
+                where: {id: groundId},
+            include: [
+                {model: Blok}
+            ]})
+             res.render('admin/updateBurialGrounds', {
+                ground,
+                block
+             })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    static async actionUpdate(req, res) {
+        try {
+            const {groundId} = req.params
             const {number, price, blockId} = req.body
             const image = req.file
-            const {gambar} = await Lahan_Makam.findOne({where: {id: groudId}})
+            const {gambar} = await Lahan_Makam.findOne({where: {id: groundId}})
             let payload 
-
             if(!image) {
                 payload = {
                     Nomor: number,
                     harga: price,
                     blok_id: blockId
                 }
-            } else {
-                await deleteImage(gambar)
+            }else {
+                if(gambar) await deleteImage(gambar)
+                const urlImage = await saveSingleImage(req.file)
                 payload = {
                     Nomor: number,
                     harga: price,
@@ -114,9 +133,10 @@ class LahanMakamController {
             }
             await Lahan_Makam.update(payload, {
                 where: {
-                    id: groudId
+                    id: groundId
                 }
             })
+            res.redirect('/admin/lahan-makam')
         } catch (error) {
             console.log(error)
         }

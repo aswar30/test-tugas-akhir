@@ -1,6 +1,4 @@
-<%- include('./item/head.ejs') %>
-
-<body>
+<%- include('../user/item/head.ejs') %>
 
     <body class="bg-white">
 
@@ -13,9 +11,32 @@
                 <p class="font-semibold text-xs text-center mb-5">Status : <%= order.status %></p>
 
                 <div class="bg-white p-2 font-semibold rounded m-2">
-                    <h3>Kode Pesanan : <%= order.id %></h3>
+                    <h3>Nomor Pesanan : <%= order.nomor_pesanan %></h3>
                     <h3>Jumlah Pembayaran : Rp. <%= order.jumlah_pembayaran %></h3>
                     <h3>Pembayaran : <%= order.Pembayaran %></h3>
+                </div>
+                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
+                    <h2 class="text-center font-bold text-base">Data Pemesan</h2>
+                    <h3 class="mb-1">Nama : <%= order.Data_Jenazah.nama %>
+                    </h3>
+                    <h3 class="mb-1">Email : <%= order.Data_Jenazah.nama %>
+                    </h3>
+                    <h3 class="mb-1">Nomor Induk Penduduk : <%= order.Data_Jenazah.NIK %>
+                    </h3>
+                    <h3 class="mb-1">Jenis Kelamin : <%= order.Data_Jenazah.jenis_kelamin %>
+                    </h3>
+                    <h3 class="mb-1">Tutup Usia : <%= order.Data_Jenazah.tutup_usia %>
+                    </h3>
+                    <h3 class="mb-1">Tanggal Meningal : <%= order.Data_Jenazah.tanggal_meninggal %>
+                    </h3>
+                    <h3 class="mb-1">Tanggal Dikebumikan : <%= order.Data_Jenazah.tanggal_dikebumikan %>
+                    </h3>
+                    <h3 class="mb-1">Kacamatan : <%= order.Data_Jenazah.Kacamatan.nama %>
+                    </h3>
+                    <h3 class="mb-1">Kelurahan : <%= order.Data_Jenazah.Kelurahan.nama %>
+                    </h3>
+                    <h3 class="mb-2">Alamat : <%= order.Data_Jenazah.alamat %>
+                    </h3>
                 </div>
                 <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
                     <h2 class="text-center font-bold text-base">Data Jenazah</h2>
@@ -30,9 +51,7 @@
                     <h3 class="mb-2">Alamat : <%= order.Data_Jenazah.alamat %></h3>
                 </div>
 
-                <div class="bg-white px-4 py-2 h-40 text-xs font-semibold rounded m-2">
-                    <h2 class="text-center font-bold text-base">Catatan Perbaikan</h2>
-                </div>
+                
 
                 <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
                     <h2 class="text-center font-bold text-base mb-3 h-full">Berkas Jenazah</h2>
@@ -65,14 +84,20 @@
                     
                 </div>
 
-        
+                <% if(order.status === 'Diterima') { %>
                 <div class="flex justify-center w-full h-12 py-2">
-                    <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
+                    <button class="bg-blue-600 rounded-md w-20 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
+                        type="submit"><a href="/admin/list-order">Kembali</a></button>
+                </div>
+                <% } else { %>
+                <div class="flex justify-center w-full h-12 py-2">
+                    <button class="bg-blue-600 rounded-md w-20 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
                         type="submit"><a href="/admin/confirm-order/<%= order.id %>">Terima</a></button>
                 </div>
+                <% } %>
         </form>
 
-        <%- include('./item/javascript.ejs') %>
+        <%- include('../user/item/javascript.ejs') %>
 
     </body>
 

@@ -1,4 +1,5 @@
 'use strict';
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -80,6 +81,10 @@ module.exports = {
       alamat: {
         type: Sequelize.TEXT,
         allowNull: false
+      },
+      is_delete: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
       },
       createdAt: {
         allowNull: false,

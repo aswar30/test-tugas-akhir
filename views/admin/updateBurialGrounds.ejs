@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <title>Document</title>
-</head>
-
+<%- include('../user/item/head.ejs') %>
 <body>
 
     <body class="bg-white">
@@ -44,12 +33,15 @@
                 </li>
             </ul>
         </nav>
-        <form action="/admin/update-lahan-makam/<%= groundsId %>" method="post" enctype="multipart/form-data">
+        <form action="/admin/update-lahan-makam/<%= ground.id %>" method="post" enctype="multipart/form-data">
             <div class="mx-auto my-40 bg-slate-500 w-80 h-auto rounded-lg pt-5 px-10">
                 <h1 class="font-bold text-center mb-5 ">Perbarui Lahan Makam</h1>
 
                 <label for="block" class="font-semibold">Kode Block</label>
-                <select name="blockId" id="" class="rounded bg-gray-300 w-full px-1 py-1">
+                <select name="blockId" value="<%= ground.blok_id %>" class="rounded bg-gray-300 w-full px-1 py-1">
+                    <option value="<%= ground.blok_id %>">
+                        <%= ground.Blok.kode %>
+                    </option>
                     <% for(let i=0; i < block.length; i++){ %>
                         <option value="<%= block[i].id%>">
                             <%= block[i].kode%>
@@ -58,27 +50,21 @@
                 </select>
 
                 <h1 class="font-semibold">Nomor</h1>
-                <input type="text" name="number" placeholder="<% grouds.Nomor %>" class="rounded bg-gray-300 w-full px-1 py-1">
+                <input type="text" name="number" value="<%= ground.Nomor %>" class="rounded bg-gray-300 w-full px-1 py-1" required>
 
                 <h1 class="font-semibold">Harga</h1>
-                <input type="text" name="price" placeholder="<% grouds.harga %>"
-                    class="rounded bg-gray-300  w-full px-1 py-1">
+                <input type="text" name="price" value="<%= ground.harga %>" class="rounded bg-gray-300  w-full px-1 py-1" required>
 
                 <h1 class="font-semibold">poto Lahan Makam</h1>
-                <input type="file" name="photoGrounds" class="rounded bg-gray-300  w-full px-1 py-1" placeholder="<% grouds.gambar%>">
+                <input type="file" name="photoGrounds" class="rounded bg-gray-300  w-full px-1 py-1" >
 
                 <button
                     class="bg-blue-600 my-5 w-20 h-7 rounded-lg text-cyan-50 font-semibold mx-20 hover:bg-blue-700 hover:font-bold"
-                    type="submit">Tambah</button>
+                    type="submit">Perbarui</button>
             </div>
         </form>
-        <script>
-            function Menu(e) {
-                let list = document.querySelector('ul');
-                e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
-            }
-        </script>
-
+        
+        <%- include('../user/item/javascript.ejs') %>
     </body>
 
 </html>

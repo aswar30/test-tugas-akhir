@@ -76,7 +76,10 @@ module.exports = (sequelize, DataTypes) => {
       alamat: {
         type: DataTypes.TEXT,
         allowNull: false
-      }
+      },
+      is_delete: {
+        type: DataTypes.BOOLEAN,
+      },
   }, {
     sequelize,
     modelName: 'Data_Jenazah',

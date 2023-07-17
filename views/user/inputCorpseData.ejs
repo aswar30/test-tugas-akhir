@@ -9,7 +9,10 @@
             <div class="mx-2 md:mx-20 my-5 bg-slate-400 w-auto h-auto rounded-lg py-5 px-4  md:px-28">
                 <h1 class="font-bold text-center mb-5">Masukan Data Jenazah</h1>
 
-                <%- include('./item/message.ejs') %>
+                <% if(alert.message !='' ) { %>
+                    <%- include('./item/message.ejs') %>
+                <% } %>
+                
                 <p class="text-sm font-semibold text-red-500">Pastikan Semua Data dan Berkas Di Isi Dengan Benar Karena Tidak Bisa Memperbarui Data dan Berkas</p>
                 <p class="text-sm font-semibold">Harus Melakukan Pesanan Ulang</p>
                 <p class="text-xs mt-4">Yang bertanda * wajib di isi</p>

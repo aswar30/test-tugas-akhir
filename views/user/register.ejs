@@ -13,37 +13,10 @@
 <body>
 
     <body class="bg-white">
-        <nav class="p-5 bg-slate-400 shadow md:flex md:items-center md:justify-between">
-            <div class="flex justify-between items-center ">
-                <span class="text-2xl font-[Poppins] cursor-pointer">
-                    <img class="h-10 inline" src="../asset/el35_wcbo_211208.jpg">
-                    tailwind
-                </span>
+        <% if(alert.message !='' ) { %>
+            <%- include('./item/message.ejs') %>
+                <% } %>
 
-                <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
-                </span>
-            </div>
-
-            <ul
-                class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-slate-400 w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">HOME</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">PEMBAYARAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0 bg-slate-500 rounded-lg px-2 py-1">
-                    <a href="#" class="text-xl duration-500">RIWAYAT PEMESANAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">LAHAN PEMAKAMAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">BLOG'S</a>
-                </li>
-            </ul>
-        </nav>
         <form action="" method="post">
             <div class="mx-auto my-40 bg-slate-500 w-80 h-auto rounded-lg pt-5 px-10">
                 <h1 class="font-bold text-center mb-5 ">Daftar</h1>

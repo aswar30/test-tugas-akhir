@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       NIK: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: [16,16]
+        }
       },
       jenis_kelamin: {
         type: DataTypes.STRING,

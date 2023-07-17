@@ -1,62 +1,38 @@
 
 <%- include('../user/item/head.ejs') %>
 
-<body>
+<body class="bg-white">
+    
+        <%- include('./item/navbar.ejs') %>
+        
+        <div class="px-2 my-5">
+            <% if(alert.message !='' ) { %>
+                <%- include('../user/item/message.ejs') %>
+                    <% } %>
+        </div>
 
-    <body class="bg-white">
-        <nav class="p-5 bg-slate-400 shadow md:flex md:items-center md:justify-between">
-            <div class="flex justify-between items-center ">
-                <span class="text-2xl font-[Poppins] cursor-pointer">
-                    <img class="h-10 inline" src="../asset/el35_wcbo_211208.jpg">
-                    tailwind
-                </span>
-
-                <span class="text-3xl cursor-pointer mx-2 md:hidden block">
-                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
-                </span>
-            </div>
-
-            <ul
-                class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-slate-400 w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">HOME</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">PEMBAYARAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0 bg-slate-500 rounded-lg px-2 py-1">
-                    <a href="#" class="text-xl duration-500">RIWAYAT PEMESANAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">LAHAN PEMAKAMAN</a>
-                </li>
-                <li class="mx-4 my-6 md:my-0">
-                    <a href="#" class="text-xl hover:text-slate-600 duration-500">BLOG'S</a>
-                </li>
-            </ul>
-        </nav>
         <form action="/admin/add-lahan-makam" method="post" enctype="multipart/form-data">
-            <div class="mx-auto my-40 bg-slate-500 w-80 h-auto rounded-lg pt-5 px-10">
-                <h1 class="font-bold text-center mb-5 ">Tambah Lahan Makam</h1>
+            <div class="h-auto px-10 pt-5 mx-auto my-40 rounded-lg bg-slate-500 w-80">
+                <h1 class="mb-5 font-bold text-center ">Tambah Lahan Makam</h1>
 
                 <label for="block" class="font-semibold">Kode Block</label>
-                <select name="blockId" id="" class="rounded bg-gray-300 w-full px-1 py-1">
+                <select name="blockId" id="" class="w-full px-1 py-1 bg-gray-300 rounded">
                     <% for(let i=0; i < block.length; i++){ %>
                         <option value="<%= block[i].id%>"><%= block[i].kode%></option>
                     <% } %>
                 </select>
 
                 <h1 class="font-semibold">Nomor</h1>
-                <input type="text" name="number" placeholder="73000000000" class="rounded bg-gray-300 w-full px-1 py-1" required>
+                <input type="text" name="number" placeholder="73000000000" class="w-full px-1 py-1 bg-gray-300 rounded" required>
             
                 <h1 class="font-semibold">Harga</h1>
-                <input type="text" name="price" placeholder="agus suryadi" class="rounded bg-gray-300  w-full px-1 py-1" required>
+                <input type="text" name="price" placeholder="agus suryadi" class="w-full px-1 py-1 bg-gray-300 rounded" required>
             
                 <h1 class="font-semibold">poto Lahan Makam</h1>
-                <input type="file" name="photoGrounds" class="rounded bg-gray-300  w-full px-1 py-1" placeholder="ucudvdd" required>
+                <input type="file" name="photoGrounds" class="w-full px-1 py-1 bg-gray-300 rounded" placeholder="ucudvdd" required>
             
                 <button
-                    class="bg-blue-600 my-5 w-20 h-7 rounded-lg text-cyan-50 font-semibold mx-20 hover:bg-blue-700 hover:font-bold"
+                    class="w-20 mx-20 my-5 font-semibold bg-blue-600 rounded-lg h-7 text-cyan-50 hover:bg-blue-700 hover:font-bold"
                     type="submit">Tambah</button>
             </div>
         </form>

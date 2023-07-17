@@ -1,5 +1,6 @@
 const moment = require('moment')
 const { Op } = require("sequelize")
+const {CorpseValidation} = require('../../validation/inputUser')
 const {Data_Jenazah, Pesanan, Lahan_Makam, Kacamatan, Kelurahan} = require('../../models')
 
 const {validateSizeFile} = require('../../middlewere/validateSize')
@@ -15,7 +16,11 @@ class CorpseControllers {
             const {idBurialGrounds, blockId} = req.params
             const kacamatan = await Kacamatan.findAll()
             const kelurahan = await Kelurahan.findAll()
+            const alertMessage = req.flash('alertMessage')
+            const alertStatus = req.flash('alertStatus')
+            const alert = { message: alertMessage, status: alertStatus }
             res.render('user/inputCorpseData', {
+                alert,
                 kacamatan,
                 kelurahan,
                 idBurialGrounds,
@@ -31,8 +36,21 @@ class CorpseControllers {
     static async actionCorpse(req, res) {
        try {
          const {idBurialGrounds, blockId} = req.params
-         const {id: userId, name: userName, email : userEmail} = req.session.user
-         const { name, gender, die, NIK, dateOfDeath, dateOfBurial, glassesId, villageId, address} = req.body
+         const {id: userId, 
+            name: userName, 
+            email : userEmail} 
+            = req.session.user
+            CorpseValidation(req.body)
+         const {
+            name, 
+            gender, 
+            die, 
+            NIK, 
+            dateOfDeath, 
+            dateOfBurial, 
+            glassesId, 
+            villageId, 
+            address} = req.body
         
          const lahan = await Lahan_Makam.findOne({where : {
             id : idBurialGrounds,
@@ -102,7 +120,9 @@ class CorpseControllers {
         return res.redirect(`/payments-burial-grounds/${idOrder}`)
        } catch (error) {
         console.log(error)
-         const {idBurialGrounds, blockId} = req.params
+        const {idBurialGrounds, blockId} = req.params
+        req.flash('alertMessage', error.message)
+        req.flash('alertStatus', 'danger')
         res.redirect(`/input-corpse-data/${idBurialGrounds}/${blockId}`)
        }
     }

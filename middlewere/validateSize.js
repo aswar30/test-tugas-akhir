@@ -1,24 +1,30 @@
-const getExtensionFile = ( name) => {
+const getExtensionFile = ( name ) => {
     const extensionFile = name.split(".")
     const lastIndex = extensionFile.length - 1
-    if(extensionFile[lastIndex] == 'jpg' || extensionFile[lastIndex] == 'jpg') console.log(lastIndex)
+    if(extensionFile[lastIndex] == 'jpg' || extensionFile[lastIndex] == 'png') console.log(lastIndex)
     else throw new Error('file harus dalam bentuk jpg atau png')
+}
+
+const sizeFile = (name) => {
+    if(name.size > 1015200) throw new Error('Maksimal 1mb untuk Ukuran Poto/file')
 }
 
 module.exports = {
     validateSizeFile : (file) => {
-        const message = 'Maksimal 2mb untuk Ukuran Poto '
-        if(file.photoIdCard[0].size > 20715200 ) throw new Error(message + 'KTP')
-        if(file.photoYellowCard[0].size > 20715200) throw new Error(message + 'kartu Kuning')
-        if(file.photoRTRWCertificate[0].size > 20715200) throw new Error(message + 'Surat Keterangan RT/RW')
-        if(file.descriptionOfDeathInHospital) {
-            if(file.descriptionOfDeathInHospital[0].size > 20715200) throw new Error(message + 'Keterangan Meinggal di RS')
+        sizeFile(file.photoIdCard[0])
+        getExtensionFile(file.photoIdCard[0].originalname)
+        sizeFile(file.photoYellowCard[0])
+        getExtensionFile(file.photoYellowCard[0].originalname)
+        sizeFile(file.photoRTRWCertificate[0])
+        getExtensionFile(file.photoRTRWCertificate[0].originalname)
+        if(file.descriptionOfDeathInHospital){
+            sizeFile(file.descriptionOfDeathInHospital[0])
+            getExtensionFile(file.descriptionOfDeathInHospital[0].originalname)
         }
     },
     validatefileSingle: (file) => {
         const {originalname} = file
         getExtensionFile(originalname)
-        console.log(getExtensionFile(originalname))
-        if(file.size > 2715200 ) throw new Error('ukuran file lebih dari 2MB')
+        sizeFile(file)
     }
 }

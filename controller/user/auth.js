@@ -1,11 +1,17 @@
 const {Masyarakat, Pengelola_Makam} = require('../../models')
+const {loginValidation, registerValidation} = require('../../validation/inputUser')
 const bcrypt = require('bcrypt')
 
 class AuthController {
     static async viewRegister(req, res) {
         try {
             if(req.session.user == null | req.session.user == undefined){
-                res.render('user/register')
+                const alertMessage = req.flash('alertMessage')
+                const alertStatus = req.flash('alertStatus')
+                const alert = { message: alertMessage, status: alertStatus }
+                res.render('user/register', {
+                    alert
+                })
             } else {
                 res.redirect('/home')
             }
@@ -16,17 +22,28 @@ class AuthController {
 
     static async actionRegister(req, res) {
         try {
+            registerValidation(req.body)
             const {NIK, email, name} = req.body
             const password = await bcrypt.hash(req.body.password, 10)
+            const validateEmail = await Masyarakat.findOne({where: {email: email}})
+            if(validateEmail) {
+                req.flash('alertMessage', 'Email Sudah Terdaftar Silahkan Masuk')
+                req.flash('alertStatus', 'danger')
+                return res.redirect('/register')
+            }
             await Masyarakat.create({
                 nomor_KTP: NIK,
                 email: email,
                 nama: name,
                 kata_sandi: password
             })
+            req.flash('alertMessage', 'Pendaftaran Berhasil Silahkan Login')
+            req.flash('alertStatus', 'danger')
             res.redirect('/login')
         } catch (error) {
             console.log(error)
+            req.flash('alertMessage', error.message)
+            req.flash('alertStatus', 'danger')
             res.redirect('/register')
         }
     }
@@ -34,7 +51,11 @@ class AuthController {
     static async viewLogin(req, res) {
         try {
             if(req.session.user == null | req.session.user == undefined){
+                const alertMessage = req.flash('alertMessage')
+                const alertStatus = req.flash('alertStatus')
+                const alert = { message: alertMessage, status: alertStatus }
                 res.render('user/login', {
+                    alert,
                     menuActive: '',
                 })
             }else {
@@ -48,6 +69,7 @@ class AuthController {
 
     static async actionLogin(req, res) {
         try {
+            loginValidation(req.body)
             const {email, password} = req.body
             let validateAdmin = null
             let isPasswordAdminrMatch = null
@@ -55,6 +77,11 @@ class AuthController {
             const validateUser = await Masyarakat.findOne({where: {email: email}})
             if(!validateUser) {
                 validateAdmin = await Pengelola_Makam.findOne({where: {email: email}})
+                if(!validateAdmin) {
+                    req.flash('alertMessage', 'User yang anda masukan tidak ada!!')
+                    req.flash('alertStatus', 'danger')
+                    return res.redirect('/login')
+                }
                 isPasswordAdminrMatch = await bcrypt.compare(password, validateAdmin.kata_sandi)
             }else {
                 isPasswordUserMatch = await bcrypt.compare(password, validateUser.kata_sandi)
@@ -65,7 +92,6 @@ class AuthController {
                 email: validateUser.email,
                 name: validateUser.nama,
             }
-            console.log(req.session.user)
             return res.redirect('/home')
             } else if( validateAdmin && isPasswordAdminrMatch) {
                 req.session.user = {
@@ -75,9 +101,10 @@ class AuthController {
                 }
                 return res.redirect('/admin/lahan-makam')
             }
-            return res.redirect('/login')
         } catch(error) {
             console.log(error)
+            req.flash('alertMessage', error.message)
+            req.flash('alertStatus', 'danger')
             return res.redirect('/login')
         }
     }

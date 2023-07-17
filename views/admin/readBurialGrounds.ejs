@@ -4,38 +4,44 @@
         
         <%- include('./item/navbar.ejs') %>
 
-        <h1 class="ml-4 mt-10 mb-5 text-2xl font-bold ">Pemakaman</h1>
+        <div class="px-2 my-5">
+            <% if(alert.message !='' ) { %>
+                <%- include('../user/item/message.ejs') %>
+                    <% } %>
+        </div>
+
+        <h1 class="mt-10 mb-5 ml-4 text-2xl font-bold ">Pemakaman</h1>
        <div class="flex justify-between mx-2 sm:mr-7">
 
         <%- include('../user/item/search.ejs') %>
 
-        <button class="bg-blue-600 h rounded w-16 md:w-20 h-8 md:h-10 mt-14 hover:bg-blue-700 hover:font-bold " type="submit">
+        <button class="w-16 h-8 bg-blue-600 rounded h md:w-20 md:h-10 mt-14 hover:bg-blue-700 hover:font-bold " type="submit">
             <a href="/admin/add-lahan-makam">Tambah</a>
         </button>
        </div>
         <% for(let i=0; i < lahanMakam.length; i++){ %>
-        <div class="sm:flex sm:justify-between bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
-            <div class="sm:flex sm:justify-between items-center">
-                <img src="<%= lahanMakam[i].gambar %>" alt="" class=" w-full h-52 sm:w-44 sm:h-40 rounded mr-10 ">
+        <div class="h-auto px-4 py-6 mx-2 my-8 rounded sm:flex sm:justify-between bg-slate-500">
+            <div class="items-center sm:flex sm:justify-between">
+                <img src="<%= lahanMakam[i].gambar %>" alt="" class="w-full mr-10 rounded h-52 sm:w-44 sm:h-40">
                 <div class="">
-                    <h1 class="font-semibold text-center text-2xl my-5">Blok : <%= lahanMakam[i].Blok.kode %>
+                    <h1 class="my-5 text-2xl font-semibold text-center">Blok : <%= lahanMakam[i].Blok.kode %>
                             <%= lahanMakam[i].Nomor %>
                     </h1>
-                    <h1 class="font-semibold text-center text-1xl my-5">
+                    <h1 class="my-5 font-semibold text-center text-1xl">
                         Status : <%= lahanMakam[i].status %>
                     </h1>
                 </div>
             </div>
             <div class="flex justify-between sm:flex-col">
                 <% if(lahanMakam[i].status === 'terisi' ) { %>
-                    <button class="bg-blue-400 h-10 rounded w-20" type="submit">Perbarui</button>
-                    <button class="bg-red-300 h-10 rounded w-20" type="submit">Hapus</button>
+                    <button class="w-20 h-10 bg-blue-400 rounded" type="submit">Perbarui</button>
+                    <button class="w-20 h-10 bg-red-300 rounded" type="submit">Hapus</button>
                 <% } %>
                 <% if(lahanMakam[i].status==='kosong' ) { %>
-                <button class="bg-blue-600 h-10 rounded w-20 hover:bg-blue-700 hover:font-bold"
+                <button class="w-20 h-10 bg-blue-600 rounded hover:bg-blue-700 hover:font-bold"
                     type="submit"><a href="/admin/update-lahan-makam/<%= lahanMakam[i].id %>">Perbarui</a></button>
                     
-                <button class="bg-red-600 h-10 rounded w-20 hover:bg-red-600 hover:font-bold"
+                <button class="w-20 h-10 bg-red-600 rounded hover:bg-red-600 hover:font-bold"
                     type="submit"><a href="/admin/delete-lahan-makam/<%= lahanMakam[i].id %>">Hapus</a></button>
                 <% } %>
             </div>

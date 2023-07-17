@@ -3,6 +3,7 @@ require ('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const session = require('express-session')
+const flash = require('connect-flash')
 
 const admin = require('./router/admin/auth')
 const user = require('./router/user/auth')
@@ -18,10 +19,11 @@ app.set('views', 'views')
 app.use(
   session({ secret: 'my secret',
   resave: false,
-  saveUninitialized: false,
-  //cookie: { maxAge: 60000 }
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
  })
 )
+app.use(flash())
 
 app.use('/admin', admin)
 app.use(user)

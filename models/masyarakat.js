@@ -35,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+          len: [16,16]
+        }
       },
     tempat_lahir: {
         type: DataTypes.STRING,

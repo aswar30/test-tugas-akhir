@@ -67,7 +67,7 @@ class AuthController {
                     menuActive: '',
                 })
             }else {
-                res.redirect('/home')
+                res.redirect('/dasboard')
             }
         } catch(error) {
             console.log(error)
@@ -100,7 +100,7 @@ class AuthController {
                 email: validateUser.email,
                 name: validateUser.nama,
             }
-            return res.redirect('/home')
+            return res.redirect('/dasboard')
             } else if( validateAdmin && isPasswordAdminrMatch) {
                 req.session.user = {
                     id: validateAdmin.id,

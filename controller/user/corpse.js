@@ -25,6 +25,7 @@ class CorpseControllers {
                 kelurahan,
                 idBurialGrounds,
                 blockId,
+                isLogin: req.session.user,
                 title: 'Data Jenazah',
                 menuActive: 'grounds',
             })

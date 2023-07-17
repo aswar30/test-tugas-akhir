@@ -9,6 +9,7 @@ class PaymentControllers {
             return res.render('user/payments', {
             totalPaymnets: order.jumlah_pembayaran,
             urlMidtrans: order.url_midtrans,
+            isLogin: req.session.user,
             title: 'Pembayaran',
             menuActive: 'payments'
         })
@@ -38,6 +39,7 @@ class PaymentControllers {
             const listPayment = order
             res.render('user/paymentList', {
                 listPayment,
+                isLogin: req.session.user,
                 title: 'Daftar Pembayaran',
                 menuActive: 'payments'
             })

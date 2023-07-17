@@ -50,6 +50,7 @@ class LahanMakamController {
             res.render('user/burialGrounds', {
                 lahanMakam,
                 block,
+                isLogin: req.session.user,
                 title: 'Lahan Pemakaman',
                 menuActive: 'grounds'
             })

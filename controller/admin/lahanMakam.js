@@ -3,6 +3,7 @@ const { Op } = require("sequelize")
 const {saveSingleImage, deleteImage} = require('../../helper/firebase')
 const {validatefileSingle} = require('../../middlewere/validateSize')
 const {validateNumberBurialGround, validateUpdateBurialGround} = require('../../validation/inDatabaseAdmin')
+const {burialGround} = require('../../validation/inputAdmin')
 
 class LahanMakamController {
     static async viewLahanMakam(req, res) {
@@ -91,6 +92,7 @@ class LahanMakamController {
     static async actionCreate(req, res) {
         try {
             const {number, price, blockId} = req.body
+            burialGround(req.body)
             validatefileSingle(req.file)
             await validateNumberBurialGround(number, blockId)
             const urlImage = await saveSingleImage(req.file)

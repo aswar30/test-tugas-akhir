@@ -17,10 +17,10 @@ app.set('view engine', 'ejs')
 app.set('views', 'views')
 
 app.use(
-  session({ secret: 'my secret',
+  session({ secret: 'mysecret',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 2 * 60 * 60 * 1000 }
  })
 )
 app.use(flash())

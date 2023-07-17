@@ -6,7 +6,7 @@ const errorMessage = (data) => {
 module.exports = {
     registerValidation: (data) => {
         const Schema = Joi.object({
-            NIK: Joi.number().required(),
+            NIK: Joi.string().max(16).min(16).pattern(new RegExp('^[0-9]+$')).messages({"NIK" : "Harus Berjumlah 16 Angka 0 - 9"}).required(),
             email: Joi.string().email().required(),
             name: Joi.string().min(3).required(),
             password: Joi.string().min(8).required()
@@ -22,7 +22,7 @@ module.exports = {
     },
     CorpseValidation: (data) => {
         const Schema = Joi.object({
-             name: Joi.string().pattern(new RegExp('^[a-z][a-zA-Z][a-z]+$')).required().messages({"nama" : "Harus di Isi"}),
+             name: Joi.string().required().messages({"nama" : "Harus di Isi"}),
              NIK: Joi.string().max(16).min(16).pattern(new RegExp('^[0-9]+$')).required().messages({"NIK" : "Harus Berjumlah 16 Angka 0 - 9"}),
              gender: Joi.string().valid('Laki-Laki', 'Perempuan').required(),
              die: Joi.number().max(999).required(),

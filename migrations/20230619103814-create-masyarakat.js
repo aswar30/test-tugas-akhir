@@ -35,6 +35,12 @@ module.exports = {
       alamat: {
         type: Sequelize.STRING,
       },
+      no_HP: {
+        type: Sequelize.STRING,
+      },
+      jenis_kelamin: {
+        type: Sequelize.STRING,
+      },
       kata_sandi: {
         type: Sequelize.STRING,
         allowNull: false,

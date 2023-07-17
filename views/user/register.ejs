@@ -18,23 +18,54 @@
                 <% } %>
 
         <form action="" method="post">
-            <div class="mx-auto my-40 bg-slate-500 w-80 h-auto rounded-lg pt-5 px-10">
-                <h1 class="font-bold text-center mb-5 ">Daftar</h1>
+            <div class="h-auto px-10 pt-5 mx-auto my-40 rounded-lg bg-slate-500 w-96">
+                <h1 class="mb-5 font-bold text-center ">Daftar</h1>
             
                 <h1 class="font-semibold"> Nomor NIK</h1>
-                <input type="text" placeholder="73000000000" name="NIK" class="rounded bg-gray-300 w-full px-1 py-1">
+                <input type="text" placeholder="73000000000" name="NIK" class="w-full px-1 py-1 bg-gray-300 rounded">
             
                 <h1 class="font-semibold">Email</h1>
-                <input type="text" placeholder="contoh@gmail.com" name="email" class="rounded bg-gray-300 w-full px-1 py-1">
+                <input type="text" placeholder="contoh@gmail.com" name="email" class="w-full px-1 py-1 bg-gray-300 rounded">
             
                 <h1 class="font-semibold">Nama</h1>
-                <input type="text" placeholder="agus suryadi" name="name" class="rounded bg-gray-300  w-full px-1 py-1">
+                <input type="text" placeholder="agus suryadi" name="name" class="w-full px-1 py-1 mb-2 rounded bg--gray-300 mb m">
+
+                <input type="radio" name="gender" value="Laki-Laki" class="text-slate-60 " required />
+                <label for="contactChoice1">Laki-Laki</label>
+                
+                <input type="radio" name="gender" value="Perempuan" class="text-slate-600" req />
+                <label for="contactChoice2">Perempuan</label>
+
+                <label class="block my-1 font-semibold text-gray-900 dark:text-black" for="default_size">Nomor HP</label>
+                <input type="text" name="numberPhone"
+                    class="block w-full px-2 py-1 mb-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
+
+                <label class="block my-1 font-semibold text-gray-900 dark:text-black" for="default_size">Tempat Lahir</label>
+                <input type="text" name="placeOfBirth"
+                    class="block w-full px-2 py-1 mb-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
+
+                <label class="block my-1 font-semibold text-gray-900 dark:text-black" for="default_size">Tanggal Lahir</label>
+                <input type="date" name="dateOfBirth"
+                    class="block w-full px-2 py-1 mb-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
+
+                <label class="block my-1 font-semibold text-gray-900 dark:text-black" for="default_size">Alamat</label>
+                <input type="text" name="address"
+                    class="block w-full px-2 py-1 mb-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
+
+                <label class="block my-1 font-semibold text-gray-900 dark:text-black" for="default_size">Pekerjaan</label>
+                <input type="text" name="work"
+                    class="block w-full px-2 py-1 mb-2 text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400"
+                    required>
             
                 <h1 class="font-semibold">Kata Sandi</h1>
-                <input type="password" name="password" class="rounded bg-gray-300  w-full px-1 py-1">
+                <input type="password" name="password" class="w-full px-1 py-1 bg-gray-300 rounded">
             
                 <button
-                    class="bg-blue-600 my-5 w-20 h-7 rounded-lg text-cyan-50 font-semibold mx-20 hover:bg-blue-700 hover:font-bold"
+                    class="w-20 my-5 font-semibold bg-blue-600 rounded mx-28 h-7 text-cyan-50 hover:bg-blue-700 hover:font-bold"
                     type="submit">Buat</button>
             </div>
         </form>

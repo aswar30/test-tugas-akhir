@@ -1,4 +1,4 @@
-const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan} = require('../../models')
+const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan, Masyarakat} = require('../../models')
 const Snap = require('../../helper/midtrans')
 
 class OrderControllers {
@@ -37,6 +37,7 @@ class OrderControllers {
           include: [
             {model: Blok},
             {model: Lahan_Makam},
+            {model: Masyarakat},
             {model: Data_Jenazah,
             include: [
              { model: Kacamatan},

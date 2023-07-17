@@ -23,7 +23,7 @@ class AuthController {
     static async actionRegister(req, res) {
         try {
             registerValidation(req.body)
-            const {NIK, email, name} = req.body
+            const {NIK, email, name, numberPhone, placeOfBirth, dateOfBirth, address, work, gender} = req.body
             const password = await bcrypt.hash(req.body.password, 10)
             const validateEmail = await Masyarakat.findOne({where: {email: email}})
             if(validateEmail) {
@@ -31,14 +31,21 @@ class AuthController {
                 req.flash('alertStatus', 'danger')
                 return res.redirect('/register')
             }
+            console.log(req.body)
             await Masyarakat.create({
                 nomor_KTP: NIK,
                 email: email,
                 nama: name,
+                tempat_lahir: placeOfBirth,
+                tanggal_lahir: dateOfBirth,
+                pekerjaan: work,
+                alamat: address,
+                no_HP: numberPhone,
+                jenis_kelamin: gender,
                 kata_sandi: password
             })
             req.flash('alertMessage', 'Pendaftaran Berhasil Silahkan Login')
-            req.flash('alertStatus', 'danger')
+            req.flash('alertStatus', 'success')
             res.redirect('/login')
         } catch (error) {
             console.log(error)
@@ -55,6 +62,7 @@ class AuthController {
                 const alertStatus = req.flash('alertStatus')
                 const alert = { message: alertMessage, status: alertStatus }
                 res.render('user/login', {
+                    isLogin: req.session.user,
                     alert,
                     menuActive: '',
                 })

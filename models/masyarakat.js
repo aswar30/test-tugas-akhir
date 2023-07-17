@@ -51,6 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     alamat: {
         type: DataTypes.STRING,
       },
+    no_HP: {
+        type: DataTypes.STRING,
+      },
+    jenis_kelamin: {
+        type: DataTypes.STRING,
+      },
     kata_sandi: {
         type: DataTypes.STRING,
         allowNull: false,

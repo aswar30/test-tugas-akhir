@@ -3,7 +3,9 @@ const {
     Blok, 
     Lahan_Makam, 
     Data_Jenazah, 
-    Kacamatan,Kelurahan
+    Kacamatan,
+    Kelurahan,
+    Masyarakat,
 } = require('../../models')
 const { Op } = require("sequelize")
 class OrderController {
@@ -119,9 +121,13 @@ class OrderController {
             })
         }
         const blok = await Blok.findAll()
+        const alertMessage = req.flash('alertMessage')
+        const alertStatus = req.flash('alertStatus')
+        const alert = { message: alertMessage, status: alertStatus }
         res.render('admin/orderList', {
             listOrder,
             blok,
+            alert,
             path: "/admin/list-order",
             title: 'Daftar Pesanan',
             menuActive: 'listOrder'
@@ -139,6 +145,7 @@ class OrderController {
           include: [
             {model: Blok},
             {model: Lahan_Makam},
+            {model: Masyarakat},
             {model: Data_Jenazah,
             include: [
              { model: Kacamatan},
@@ -164,6 +171,8 @@ class OrderController {
                     id: orderId
                 }
             })
+            req.flash('alertMessage', 'Pesanan Sudah di Terima')
+            req.flash('alertStatus', 'success')
             res.redirect('/admin/list-order')
         }catch (error) {
             console.log(error)

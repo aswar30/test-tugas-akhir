@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-const Auth = require('../../controller/user/auth')
+const Auth = require('../../controller/auth')
 const Lahan = require('../../controller/user/lahanMakan')
 const Jenazah = require('../../controller/user/corpse')
 const Payment = require('../../controller/user/payment')

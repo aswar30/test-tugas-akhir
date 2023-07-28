@@ -7,18 +7,18 @@
         <%- include('./item/navbar.ejs') %>
 
         <form action="" method="post">
-            <div class="mx-2 md:mx-20 my-5 bg-slate-400 w-auto h-auto rounded-lg py-5 px-4  md:px-28">
-                <h1 class="font-bold text-center mb-2 text-lg">Detail Pesanan Lahan Makam</h1>
-                <p class="font-semibold text-xs text-center mb-1" >Waktu pemesanan : <%= order.Tanggal %></p>
-                <p class="font-semibold text-xs text-center mb-5">Status : <%= order.status %></p>
+            <div class="w-auto h-auto px-4 py-5 mx-2 my-5 rounded-lg md:mx-20 bg-slate-400 md:px-28">
+                <h1 class="mb-2 text-lg font-bold text-center">Detail Pesanan Lahan Makam</h1>
+                <p class="mb-1 text-xs font-semibold text-center" >Waktu pemesanan : <%= order.Tanggal %></p>
+                <p class="mb-5 text-xs font-semibold text-center">Status : <%= order.status %></p>
 
-                <div class="bg-white p-2 font-semibold rounded m-2">
+                <div class="p-2 m-2 font-semibold bg-white rounded">
                     <h3>Nomor Pesanan : <%= order.nomor_pesanan %></h3>
                     <h3>Jumlah Pembayaran : Rp. <%= order.jumlah_pembayaran %></h3>
                     <h3>Pembayaran : <%= order.Pembayaran %></h3>
                 </div>
-                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
-                    <h2 class="text-center font-bold text-base">Data Pemesan</h2>
+                <div class="px-4 py-2 m-2 text-xs font-semibold bg-white rounded">
+                    <h2 class="text-base font-bold text-center">Data Jenazah</h2>
                     <h3 class="mb-1">Nama : <%= order.Data_Jenazah.nama %>
                     </h3>
                     <h3 class="mb-1">Email : <%= order.Data_Jenazah.nama %>
@@ -40,55 +40,41 @@
                     <h3 class="mb-2">Alamat : <%= order.Data_Jenazah.alamat %>
                     </h3>
                 </div>
-                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
-                    <h2 class="text-center font-bold text-base">Data Jenazah</h2>
-                    <h3 class="mb-1">Nama : <%= order.Data_Jenazah.nama %></h3>
-                    <h3 class="mb-1">Nomor Induk Penduduk : <%= order.Data_Jenazah.NIK %></h3>
-                    <h3 class="mb-1">Jenis Kelamin : <%= order.Data_Jenazah.jenis_kelamin %></h3>
-                    <h3 class="mb-1">Tutup Usia : <%= order.Data_Jenazah.tutup_usia %></h3>
-                    <h3 class="mb-1">Tanggal Meningal : <%= order.Data_Jenazah.tanggal_meninggal %></h3>
-                    <h3 class="mb-1">Tanggal Dikebumikan : <%= order.Data_Jenazah.tanggal_dikebumikan %></h3>
-                    <h3 class="mb-1">Kacamatan : <%= order.Data_Jenazah.Kacamatan.nama %></h3>
-                    <h3 class="mb-1">Kelurahan : <%= order.Data_Jenazah.Kelurahan.nama %></h3>
-                    <h3 class="mb-2">Alamat : <%= order.Data_Jenazah.alamat %></h3>
-                </div>
 
-                
-
-                <div class="bg-white px-4 py-2 text-xs font-semibold rounded m-2">
-                    <h2 class="text-center font-bold text-base mb-3 h-full">Berkas Jenazah</h2>
-                    <div class="text-center mb-10 items-center">
+                <div class="px-4 py-2 m-2 text-xs font-semibold bg-white rounded">
+                    <h2 class="h-full mb-3 text-base font-bold text-center">Berkas Jenazah</h2>
+                    <div class="items-center mb-10 text-center">
                         <h3 class="mb-2 font-semibold">Poto Kartu Penduduk</h3>
-                        <img class="rounded  w-full" src="<%= order.Data_Jenazah.KTP %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.KTP %>" alt="poto berkas" srcset="">
                     </div>
-                    <div class="text-center mb-10">
+                    <div class="mb-10 text-center">
                         <h3 class="mb-2 font-semibold">Poto Kartu Keluarga</h3>
-                        <img class="rounded w-full" src="<%= order.Data_Jenazah.kartu_Kelaurga %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.kartu_Kelaurga %>" alt="poto berkas" srcset="">
                     </div>
-                    <div class="text-center mb-10">
+                    <div class="mb-10 text-center">
                         <h3 class="mb-2 font-semibold">Poto Kartu Kuning</h3>
-                        <img class="rounded w-full" src="<%= order.Data_Jenazah.kartu_kuning %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.kartu_kuning %>" alt="poto berkas" srcset="">
                     </div>
-                    <div class="text-center mb-10 ">
+                    <div class="mb-10 text-center ">
                         <h3 class="mb-2 font-semibold">Poto Surat Keterangan RT/RW</h3>
-                        <img class="rounded w-full" src="<%= order.Data_Jenazah.surat_keterangan_RTRW %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.surat_keterangan_RTRW %>" alt="poto berkas" srcset="">
                     </div>
                     <% if(order.Data_Jenazah.surat_keterangan_meninggal_RS) { %>
-                    <div class="text-center mb-10">
+                    <div class="mb-10 text-center">
                         <h3 class="mb-2 font-semibold">Poto Surat Keterangan Meninggal Di Rumah Sakit</h3>
-                        <img class="rounded  w-full" src="<%= order.Data_Jenazah.surat_keterangan_meninggal_RS %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.surat_keterangan_meninggal_RS %>" alt="poto berkas" srcset="">
                     </div>
                     <% } %>
-                    <div class="text-center mb-10">
+                    <div class="mb-10 text-center">
                         <h3 class="mb-2 font-semibold">Poto Kartu Penduduk Ahli Waris</h3>
-                        <img class="rounded  w-full" src="<%= order.Data_Jenazah.KTP_ahli_waris %>" alt="poto berkas" srcset="">
+                        <img class="w-full rounded" src="<%= order.Data_Jenazah.KTP_ahli_waris %>" alt="poto berkas" srcset="">
                     </div>
                     
                 </div>
 
         
                 <div class="flex justify-center w-full h-12 py-2">
-                    <button class="bg-blue-600 rounded-md w-16 text-cyan-50 font-semibold hover:bg-blue-700 hover:font-bold"
+                    <button class="w-16 font-semibold bg-blue-600 rounded-md text-cyan-50 hover:bg-blue-700 hover:font-bold"
                         type="submit"><a href="/list-orders">Kembali</a></button>
                 </div>
         </form>

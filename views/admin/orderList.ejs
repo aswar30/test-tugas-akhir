@@ -6,16 +6,22 @@
     <body class="bg-white">
         <%- include('./item/navbar.ejs') %>
 
-        <h1 class="ml-2 my-10 text-2xl font-bold">Daftar Pemesan</h1>
+        <div class="px-2 my-5">
+            <% if(alert.message !='' ) { %>
+                <%- include('../user/item/message.ejs') %>
+                    <% } %>
+        </div>
+
+        <h1 class="my-10 ml-2 text-2xl font-bold">Daftar Pemesan</h1>
 
         <%- include('./item/filter.ejs') %>
 
         <% for(let i=0; i < listOrder.length; i++){ %>
-            <div class="sm:flex sm:justify-between items-center bg-slate-500 px-4 py-6 h-auto my-8 mx-2 rounded">
-                <div class="sm:flex sm:justify-between items-center">
-                    <img src="<%= listOrder[i].Lahan_Makam.gambar %>" alt="" class=" w-full sm:w-56 h-40 rounded mr-10">
+            <div class="items-center h-auto px-4 py-6 mx-2 my-8 rounded sm:flex sm:justify-between bg-slate-500">
+                <div class="items-center sm:flex sm:justify-between">
+                    <img src="<%= listOrder[i].Lahan_Makam.gambar %>" alt="" class="w-full h-40 mr-10 rounded  sm:w-56">
                     <div>
-                        <h1 class=" mt-4 font-semibold">Nomor Pesanan : <%= listOrder[i].nomor_pesanan %>
+                        <h1 class="mt-4 font-semibold ">Nomor Pesanan : <%= listOrder[i].nomor_pesanan %>
                         </h1>
                         <h1 class="font-semibold">Status : <%= listOrder[i].status %>
                         </h1>
@@ -23,7 +29,7 @@
                 </div>
                 <h1 class="font-semibold">Biaya : Rp. <%= listOrder[i].Lahan_Makam.harga%></h1>
                 <button
-                    class="bg-blue-600 h-10 rounded w-20 items-center mt-2 sm:my-14 hover:bg-blue-700 hover:font-bold text-white">
+                    class="items-center w-20 h-10 mt-2 text-white bg-blue-600 rounded sm:my-14 hover:bg-blue-700 hover:font-bold">
                     <a href="/admin/detail-order/<%= listOrder[i].id %>">Detail</a>
                 </button>
             </div>

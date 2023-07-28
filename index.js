@@ -8,6 +8,8 @@ const flash = require('connect-flash')
 const admin = require('./router/admin/auth')
 const user = require('./router/user/auth')
 
+const auth = require('./controller/auth')
+
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
@@ -28,9 +30,7 @@ app.use(flash())
 app.use('/admin', admin)
 app.use(user)
 
-app.use( (req, res) => {
-    res.redirect('/login')
-})
+app.use(auth.notFound)
 
 console.log(`App running on port ${process.env.PORT}`)
 

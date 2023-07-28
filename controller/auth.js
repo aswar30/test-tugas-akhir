@@ -1,5 +1,6 @@
-const {Masyarakat, Pengelola_Makam} = require('../../models')
-const {loginValidation, registerValidation} = require('../../validation/inputUser')
+const { render } = require('ejs')
+const {Masyarakat, Pengelola_Makam} = require('../models')
+const {loginValidation, registerValidation} = require('../validation/inputUser')
 const bcrypt = require('bcrypt')
 
 class AuthController {
@@ -62,7 +63,7 @@ class AuthController {
                 const alertStatus = req.flash('alertStatus')
                 const alert = { message: alertMessage, status: alertStatus }
                 res.render('user/login', {
-                    isLogin: req.session.user,
+                    isLogin: false,
                     alert,
                     menuActive: '',
                 })
@@ -109,6 +110,9 @@ class AuthController {
                 }
                 return res.redirect('/admin/lahan-makam')
             }
+            req.flash('alertMessage', 'Kata Sandi Yang Anda Masukan Salah')
+            req.flash('alertStatus', 'danger')
+            return res.redirect('/login')
         } catch(error) {
             console.log(error)
             req.flash('alertMessage', error.message)
@@ -121,6 +125,21 @@ class AuthController {
         try {
             const {name} = req.session.user
             res.render('user/home', {
+                isLogin: true,
+                name,
+                title: 'Home',
+                menuActive: 'home',
+            })
+        } catch(error) {
+             return res.redirect('/login')
+        }
+    }
+
+    static async viewHomeAdmin(req, res) {
+        try {
+            const {name} = req.session.user
+            res.render('admin/home', {
+                isLogin: true,
                 name,
                 title: 'Home',
                 menuActive: 'home',
@@ -136,6 +155,26 @@ class AuthController {
             return res.redirect('/login')
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    static async notFound(req, res) {
+        try{
+            if(req.session.user == null | req.session.user == undefined){
+                res.render('404', {
+                    isLogin: false,
+                    title: 'Home',
+                    menuActive: '',
+                })
+            }
+            res.render('404', {
+                isLogin: true,
+                title: 'Home',
+                menuActive: '',
+                })
+        }catch (error) {
+            console.log(error)
+            res.redirect('/home')
         }
     }
 }

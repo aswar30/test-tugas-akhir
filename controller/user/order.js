@@ -1,4 +1,4 @@
-const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan, Masyarakat} = require('../../models')
+const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan} = require('../../models')
 const Snap = require('../../helper/midtrans')
 
 class OrderControllers {
@@ -21,6 +21,7 @@ class OrderControllers {
             const listOderHistory = orderHistory
             return res.render('user/orderHistory', {
                 listOderHistory,
+                 isLogin: true,
                 title: 'Riwayat Pemesanan',
                 menuActive: 'orderHistory'
             })
@@ -37,7 +38,6 @@ class OrderControllers {
           include: [
             {model: Blok},
             {model: Lahan_Makam},
-            {model: Masyarakat},
             {model: Data_Jenazah,
             include: [
              { model: Kacamatan},
@@ -47,6 +47,7 @@ class OrderControllers {
         })
         return res.render('user/detailOrders', {
           order,
+           isLogin: true,
           title: 'Detail Pesanan',
           menuActive: 'orderHistory'})
       } catch (error) {

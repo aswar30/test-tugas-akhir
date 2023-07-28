@@ -1,7 +1,7 @@
 const getExtensionFile = ( name ) => {
     const extensionFile = name.split(".")
     const lastIndex = extensionFile.length - 1
-    if(extensionFile[lastIndex] == 'jpg' || extensionFile[lastIndex] == 'png') console.log(lastIndex)
+    if(extensionFile[lastIndex] == 'jpg' || extensionFile[lastIndex] == 'png' || extensionFile[lastIndex] == 'jpeg') console.log(lastIndex)
     else throw new Error('file harus dalam bentuk jpg atau png')
 }
 

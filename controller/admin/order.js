@@ -13,12 +13,11 @@ class OrderController {
         try {
             let listOrder
             const {status, search, blockId} = req.query
-            console.log(req.query)
             if(search && status && blockId){
                 listOrder =  await Pesanan.findAll({
                     where: {
                         [Op.and]: [{
-                            Nomor: {
+                            nomor_pesanan: {
                                 [Op.substring]: search
                             }
                         },
@@ -35,7 +34,7 @@ class OrderController {
                  listOrder =  await Pesanan.findAll({
                     where: {
                         [Op.and]: [{
-                            Nomor: {
+                            nomor_pesanan: {
                                 [Op.substring]: search
                             }
                         },
@@ -52,7 +51,7 @@ class OrderController {
                     where: {
                         [Op.and]: [
                             {
-                            Nomor: { [Op.substring]: search}
+                            nomor_pesanan: { [Op.substring]: search}
                         },
                         { blok_id: blockId }
                     ]
@@ -80,7 +79,7 @@ class OrderController {
                     where: {
                         [Op.and]: [
                             {
-                            Nomor: { [Op.substring]: search}
+                            nomor_pesanan: { [Op.substring]: search}
                         },
                     ]
                 },

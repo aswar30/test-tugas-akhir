@@ -32,7 +32,6 @@ class AuthController {
                 req.flash('alertStatus', 'danger')
                 return res.redirect('/register')
             }
-            console.log(req.body)
             await Masyarakat.create({
                 nomor_KTP: NIK,
                 email: email,
@@ -101,14 +100,14 @@ class AuthController {
                 email: validateUser.email,
                 name: validateUser.nama,
             }
-            return res.redirect('/dasboard')
+            return res.redirect('/home')
             } else if( validateAdmin && isPasswordAdminrMatch) {
                 req.session.user = {
                     id: validateAdmin.id,
                     email: validateAdmin.email,
                     name: validateAdmin.nama
                 }
-                return res.redirect('/admin/lahan-makam')
+                return res.redirect('/admin/home')
             }
             req.flash('alertMessage', 'Kata Sandi Yang Anda Masukan Salah')
             req.flash('alertStatus', 'danger')

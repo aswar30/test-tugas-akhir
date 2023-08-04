@@ -1,20 +1,18 @@
 const express = require('express');
-
 const router = express.Router();
 
 const Lahan = require('../../controller/admin/lahanMakam')
-
 const Order = require('../../controller/admin/order')
-
 const Payment = require('../../controller/admin/payment')
-
 const {singleUpload} = require('../../middlewere/multer')
-
 const {authAdmin} = require('../../middlewere/auth')
+const Auth = require('../../controller/auth')
 
 router.get('/lahan-makam', authAdmin, Lahan.viewLahanMakam)
 
 router.get('/confirm-order/:orderId', authAdmin, Order.confirmOrder)
+
+router.get('/home', authAdmin, Auth.viewHomeAdmin)
 
 router.get('/list-order', authAdmin, Order.viewOderHistory)
 router.get('/detail-order/:orderId', authAdmin, Order.viewDetailOrder)

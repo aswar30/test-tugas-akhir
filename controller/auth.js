@@ -1,4 +1,3 @@
-const { render } = require('ejs')
 const {Masyarakat, Pengelola_Makam} = require('../models')
 const {loginValidation, registerValidation} = require('../validation/inputUser')
 const bcrypt = require('bcrypt')

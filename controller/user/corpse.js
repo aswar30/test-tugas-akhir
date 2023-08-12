@@ -51,7 +51,7 @@ class CorpseControllers {
             villageId, 
             address
         } = req.body
-        console.log(dateNow)
+        console.log("ini waktuku "+ dateNow)
 
          const lahan = await Lahan_Makam.findOne({where : {
             id : idBurialGrounds,

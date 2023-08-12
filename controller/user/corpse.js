@@ -8,8 +8,6 @@ const {saveImage} = require('../../helper/firebase')
 const Snap = require('../../helper/midtrans')
 
 let dateNow = moment().locale('id').format('Do MMMM YYYY')
-console.log(dateNow)
-
 class CorpseControllers {
     static async viewCorpse(req, res) {
         try {
@@ -51,8 +49,10 @@ class CorpseControllers {
             dateOfBurial, 
             glassesId, 
             villageId, 
-            address} = req.body
-        
+            address
+        } = req.body
+        console.log(dateNow)
+
          const lahan = await Lahan_Makam.findOne({where : {
             id : idBurialGrounds,
             status: {[Op.ne]: 'terisi'}
@@ -60,7 +60,9 @@ class CorpseControllers {
          const totalPrice = lahan.harga
 
          const orderId =  "PLM-" + userId + "-" + new Date().getTime()
-         
+         console.log(orderId)
+         console.log(dateNow)
+
          const parameter = {
           "transaction_details": {
               "order_id": orderId,
@@ -75,7 +77,7 @@ class CorpseControllers {
             }
         }
         const requestPaymentToken = await Snap.createTransaction(parameter)
-
+        console.log(dateNow)
          await validateSizeFile(req.files)
          const { 
             urlIdCard,

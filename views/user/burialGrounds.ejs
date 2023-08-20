@@ -7,7 +7,7 @@
 
         <main class="z-auto">
             <h1 class="mt-10 mb-3 ml-5">Pemakaman</h1>
-        <form action="/dasboard" method="get">
+        <form action="/list-lahan-makam" method="get">
             <div class="relative w-auto">
                 <div class="absolute inset-y-0 flex items-center pointer-events-none left-5">
                     <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -27,7 +27,7 @@
         <% for(let i=0; i < lahanMakam.length; i++){ %>
         <div class="items-center h-auto px-4 py-6 mx-2 my-8 rounded sm:flex sm:justify-between bg-slate-500">
             <div class="items-center sm:flex sm:justify-between">
-                <img src="<%= lahanMakam[i].gambar %>" alt="" class="w-full h-40 mr-10 rounded  sm:w-56">
+                <img src="<%= lahanMakam[i].gambar %>" alt="" class="w-full h-40 mr-10 rounded sm:w-56">
                 <h1 class="mt-4 ">Blok : <%= block[i].Blok.kode %> <%= lahanMakam[i].Nomor %></h1>
             </div>
             <h1>Biaya : Rp. <%= lahanMakam[i].harga%></h1>

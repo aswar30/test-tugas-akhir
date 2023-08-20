@@ -47,10 +47,12 @@ class LahanMakamController {
                     {model: Blok},
             ]})
             const block = lahanMakam
+            let isLogin = true
+            if(req.session.user == null | req.session.user == undefined) isLogin = false
             res.render('user/burialGrounds', {
                 lahanMakam,
                 block,
-                isLogin: true ,
+                isLogin: isLogin,
                 title: 'Lahan Pemakaman',
                 menuActive: 'grounds'
             })

@@ -7,7 +7,7 @@ const {validateSizeFile} = require('../../middlewere/validateSize')
 const {saveImage} = require('../../helper/firebase')
 const Snap = require('../../helper/midtrans')
 
-let dateNow = moment().locale('id').format('DD MM YYYY HH:mm:ss')
+let dateNow = moment().format('DD MM YYYY HH:mm:ss')
 class CorpseControllers {
     static async viewCorpse(req, res) {
         try {
@@ -117,7 +117,7 @@ class CorpseControllers {
             token_midtrans: requestPaymentToken.token,
             order_id_midtrans: orderId,
             nomor_pesanan: orderId,
-            Tanggal: dateNow,
+            //Tanggal: dateNow,
         })
         await Lahan_Makam.update({status: 'terisi'}, {where: {id: idBurialGrounds}})
         return res.redirect(`/payments-burial-grounds/${idOrder}`)

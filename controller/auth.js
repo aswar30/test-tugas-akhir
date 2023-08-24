@@ -65,8 +65,11 @@ class AuthController {
                     alert,
                     menuActive: '',
                 })
-            }else {
-                res.redirect('/dasboard')
+             }
+             else if (req.session.user.adminAuth){
+                res.redirect('/admin/home')
+            } else {
+                res.redirect('/home')
             }
         } catch(error) {
             console.log(error)
@@ -104,7 +107,8 @@ class AuthController {
                 req.session.user = {
                     id: validateAdmin.id,
                     email: validateAdmin.email,
-                    name: validateAdmin.nama
+                    name: validateAdmin.nama,
+                    adminAuth: true
                 }
                 return res.redirect('/admin/home')
             }
@@ -157,23 +161,7 @@ class AuthController {
     }
 
     static async notFound(req, res) {
-        try{
-            if(req.session.user == null | req.session.user == undefined){
-                res.render('404', {
-                    isLogin: false,
-                    title: 'Home',
-                    menuActive: '',
-                })
-            }
-            res.render('404', {
-                isLogin: true,
-                title: 'Home',
-                menuActive: '',
-                })
-        }catch (error) {
-            console.log(error)
-            res.redirect('/home')
-        }
+        res.redirect('/login')
     }
 }
 module.exports = AuthController

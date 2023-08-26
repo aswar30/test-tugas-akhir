@@ -30,6 +30,8 @@ router.get('/list-payments', authUser, Payment.viewListPaymnet)
 router.get('/list-orders', authUser, Order.viewOrderHistory)
 router.get('/detail-order/:orderId', authUser, Order.viewDetailOrder)
 
+router.get('/', Auth.redirectToListGrouns)
+
 router.get('/list-lahan-makam', Lahan.viewLahanMakam)
 
 router.post("/notification", Order.Notifications)

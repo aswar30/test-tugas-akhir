@@ -163,5 +163,8 @@ class AuthController {
     static async notFound(req, res) {
         res.redirect('/login')
     }
+    static async redirectToListGrouns(req, res) {
+        res.redirect('/list-lahan-makam')
+    }
 }
 module.exports = AuthController

@@ -108,6 +108,66 @@ module.exports = {
         kacamatan_id: 3,
         nama: 'Kodigareng'
       },
+      {
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya Selatan',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya Timur',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya Utara',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Barana',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maccini',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maccini Gusung',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maccini Parang',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maradekaya',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maradekaya Selatan',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maradekaya Utara',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maricaya',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Maricaya Baru',
+      },
+      { 
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya',
+      },
+      {
+        kacamatan_id: 4,
+        nama: 'Bara-Baraya',
+      },
     ])
   },
 

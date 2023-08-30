@@ -31,6 +31,12 @@ module.exports = {
       gambar: {
           type: Sequelize.STRING,
       },
+      lebar: {
+        type: Sequelize.INTEGER,
+      },
+      panjang: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         type: Sequelize.DATE,
       },

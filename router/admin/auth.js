@@ -11,6 +11,7 @@ const Auth = require('../../controller/auth')
 router.get('/lahan-makam', authAdmin, Lahan.viewLahanMakam)
 
 router.get('/confirm-order/:orderId', authAdmin, Order.confirmOrder)
+router.get('/rejected-order/:orderId', authAdmin, Order.rejectOrder)
 
 router.get('/home', authAdmin, Auth.viewHomeAdmin)
 

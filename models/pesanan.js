@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     status: {
         type: DataTypes.STRING,
-        defaultValue: 'Menunggu Pembayaran',
+        defaultValue: 'Menunggu Validasi',
       },
     url_midtrans: {
         type: DataTypes.STRING,

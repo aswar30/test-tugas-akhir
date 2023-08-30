@@ -26,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      lebar: {
+        type: DataTypes.INTEGER,
+      },
+      panjang: {
+        type: DataTypes.INTEGER,
+      },
     gambar: {
         type: DataTypes.STRING,
       },

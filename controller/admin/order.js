@@ -7,7 +7,7 @@ const {
     Kelurahan,
     Masyarakat,
 } = require('../../models')
-const { Op } = require("sequelize")
+const { Op, where } = require("sequelize")
 class OrderController {
     static async viewOderHistory (req, res) {
         try {
@@ -165,13 +165,35 @@ class OrderController {
     static async confirmOrder(req, res) {
         try{
             const {orderId} = req.params
-            await Pesanan.update({status: 'Diterima'}, {
+            await Pesanan.update({status: 'Menunggu Pembayaran'}, {
                 where: {
                     id: orderId
                 }
             })
             req.flash('alertMessage', 'Pesanan Sudah di Terima')
             req.flash('alertStatus', 'success')
+            res.redirect('/admin/list-order')
+        }catch (error) {
+            console.log(error)
+        }
+    }
+
+    static async rejectOrder(req, res) {
+        try{
+            const {orderId} = req.params
+            const Order = await Pesanan.findOne({where: {id: orderId}})
+            await Pesanan.update({status: 'Ditolak'}, {
+                where: {
+                    id: orderId
+                }
+            })
+            await Lahan_Makam.update({status: 'kosong'},{
+                where: {
+                    id: Order.lahan_makam_id
+                }
+            })
+            req.flash('alertMessage', 'Pesanan di tolak')
+            req.flash('alertStatus', 'danger')
             res.redirect('/admin/list-order')
         }catch (error) {
             console.log(error)

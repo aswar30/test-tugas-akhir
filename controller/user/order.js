@@ -68,7 +68,7 @@ class OrderControllers {
         if(orderId) {
           if(dataTransaction.transaction_status == 'settlement') {
             await Pesanan.update({
-            status: "Menunggu Validasi",
+            status: "Pesanan Selesai",
             Pembayaran: `${dataTransaction.payment_type}`
           },
           {where : {

@@ -120,7 +120,7 @@ class CorpseControllers {
             //Tanggal: dateNow,
         })
         await Lahan_Makam.update({status: 'terisi'}, {where: {id: idBurialGrounds}})
-        return res.redirect(`/payments-burial-grounds/${idOrder}`)
+        return res.redirect('/list-lahan-makam')
        } catch (error) {
         console.log(error)
         const {idBurialGrounds, blockId} = req.params

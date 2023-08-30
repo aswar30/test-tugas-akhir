@@ -10,6 +10,8 @@ module.exports = {
         Nomor: 3,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -18,6 +20,8 @@ module.exports = {
         Nomor: 123,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -26,6 +30,8 @@ module.exports = {
         Nomor: 123,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -34,6 +40,8 @@ module.exports = {
         Nomor: 10,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -42,6 +50,8 @@ module.exports = {
         Nomor: 2,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -50,6 +60,8 @@ module.exports = {
         Nomor: 123,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },
@@ -58,6 +70,8 @@ module.exports = {
         Nomor: 123,
         status: 'kosong',
         harga: 350000,
+        panjang: 2,
+        lebar: 1,
         createdAt : date,
         updatedAt : date
       },

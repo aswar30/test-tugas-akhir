@@ -1,5 +1,5 @@
 const {Pesanan, Blok, Lahan_Makam} = require('../../models')
-
+const { Op } = require("sequelize")
 class PaymentControllers {
     static async viewPayment(req, res) {
         try {
@@ -24,7 +24,7 @@ class PaymentControllers {
             const order = await Pesanan.findAll({
                 where: {
                     masyarakat_id: userId,
-                    status: 'Menunggu Pembayaran'
+                    status: { [Op.in]: ['Menunggu Pembayaran', 'Menunggu Validasi'] }
                 },
                 include: [
                     {

@@ -103,6 +103,8 @@
                 <div class="flex justify-center w-full h-12 py-2">
                     <button class="w-20 font-semibold bg-blue-600 rounded-md text-cyan-50 hover:bg-blue-700 hover:font-bold"
                         type="submit"><a href="/admin/confirm-order/<%= order.id %>">Terima</a></button>
+                    <button class="w-20 ml-2 font-semibold bg-red-500 rounded-md text-cyan-50 hover:bg-red-700 hover:font-bold"
+                        type="submit"><a href="/admin/rejected-order/<%= order.id %>">Tolak</a></button>
                 </div>
                 <% } %>
         </form>

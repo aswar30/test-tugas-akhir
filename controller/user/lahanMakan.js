@@ -1,4 +1,4 @@
-const {Lahan_Makam, Blok} = require('../../models')
+const {Lahan_Makam, Blok, Total_lahan_makam} = require('../../models')
 const { Op } = require("sequelize")
 
 class LahanMakamController {
@@ -47,6 +47,8 @@ class LahanMakamController {
                     {model: Blok},
             ]})
             const block = lahanMakam
+            const {total}= await Total_lahan_makam.findOne({where: {id : 1}})
+            console.log(total)
             let isLogin = true
             if(req.session.user == null | req.session.user == undefined) isLogin = false
             res.render('user/burialGrounds', {
@@ -54,7 +56,9 @@ class LahanMakamController {
                 block,
                 isLogin: isLogin,
                 title: 'Lahan Pemakaman',
-                menuActive: 'grounds'
+                menuActive: 'grounds',
+                totalLahan: total,
+
             })
         } catch (error) {
             console.log(error)

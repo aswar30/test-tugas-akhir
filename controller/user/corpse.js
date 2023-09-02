@@ -1,7 +1,7 @@
 const moment = require('moment')
 const { Op } = require("sequelize")
 const {CorpseValidation} = require('../../validation/inputUser')
-const {Data_Jenazah, Pesanan, Lahan_Makam, Kacamatan, Kelurahan} = require('../../models')
+const {Data_Jenazah, Pesanan, Lahan_Makam, Kacamatan, Kelurahan, Total_lahan_makam} = require('../../models')
 
 const {validateSizeFile} = require('../../middlewere/validateSize')
 const {saveImage} = require('../../helper/firebase')
@@ -51,8 +51,7 @@ class CorpseControllers {
             villageId, 
             address
         } = req.body
-        console.log("ini waktuku "+ dateNow)
-
+        
          const lahan = await Lahan_Makam.findOne({where : {
             id : idBurialGrounds,
             status: {[Op.ne]: 'terisi'}
@@ -60,8 +59,6 @@ class CorpseControllers {
          const totalPrice = lahan.harga
 
          const orderId =  "PLM-" + userId + "-" + new Date().getTime()
-         console.log(orderId)
-         console.log(dateNow)
 
          const parameter = {
           "transaction_details": {
@@ -77,7 +74,6 @@ class CorpseControllers {
             }
         }
         const requestPaymentToken = await Snap.createTransaction(parameter)
-        console.log(dateNow)
          await validateSizeFile(req.files)
          const { 
             urlIdCard,

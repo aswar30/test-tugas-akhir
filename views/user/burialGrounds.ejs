@@ -6,7 +6,7 @@
         <%- include('./item/navbar.ejs') %>
 
         <main class="z-auto">
-            <h1 class="mt-10 mb-3 ml-5">Pemakaman</h1>
+            <h1 class="my-10 ml-2 text-2xl font-bold">Lahan Pemakaman</h1>
         <form action="/list-lahan-makam" method="get">
             <div class="relative w-auto">
                 <div class="absolute inset-y-0 flex items-center pointer-events-none left-5">
@@ -23,6 +23,8 @@
                     class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cari</button>
             </div>
         </form>
+
+        <h1 class="mt-4 ml-2">Belum Terisi : <%= totalLahan%></h1>
 
         <% for(let i=0; i < lahanMakam.length; i++){ %>
         <div class="items-center h-auto px-4 py-6 mx-2 my-8 rounded sm:flex sm:justify-between bg-slate-500">

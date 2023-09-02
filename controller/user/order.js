@@ -1,4 +1,4 @@
-const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan} = require('../../models')
+const {Pesanan, Blok, Lahan_Makam, Data_Jenazah, Kacamatan, Kelurahan, Total_lahan_makam} = require('../../models')
 const Snap = require('../../helper/midtrans')
 
 class OrderControllers {
@@ -74,6 +74,15 @@ class OrderControllers {
           {where : {
             order_id_midtrans : dataTransaction.order_id
           }
+        })
+        const totalLahanPemakaman = await Total_lahan_makam.findOne({
+          where: {id: 1}
+        })
+        await Total_lahan_makam.update({
+          total: totalLahanPemakaman.total - 1,
+          terisi: totalLahanPemakaman.terisi + 1,
+        }, {
+          where : {id: 1}
         })
       }  else if (dataTransaction.transaction_status == 'cancel' 
           || dataTransaction.transaction_status == 'expire') {
